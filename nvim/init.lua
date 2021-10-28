@@ -1,3 +1,17 @@
+
+require('nwvi.util')
+require('nwvi.plugins')
+
+require("indent_blankline").setup {
+    char = "|",
+    buftype_exclude = {"terminal"}
+}
+
+
+require('nvim-web-devicons').setup() -- ensable devicons
+
+require('colorizer').setup() -- enable color higlighting
+
 --- Helpers ---
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
@@ -9,49 +23,6 @@ local function map(mode, keys, actions, opts)
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, keys, actions, options)
 end
-
---- Bootstrap Packer ---
--- local execute = vim.api.nvim_command
--- local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
--- 
--- if fn.empty(fn.glob(install_path)) > 0 then
---   fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
---   execute 'packadd packer.nvim'
--- end
-
-require('util')
-require('plugins')
-
--- tokyonight config
-vim.g.tokyonight_style = "dark"
-vim.g.tokyonight_italic_functions = true
-vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
-
--- Change the "hint" color to the "orange" color, and make the "error" color bright red
-vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-
--- Load the colorscheme
--- vim.cmd[[colorscheme tokyonight]]
-require('github-theme').setup {
-  theme_style = "dimmed"
-}
-
-require("indent_blankline").setup {
-    char = "|",
-    buftype_exclude = {"terminal"}
-}
-
-require("plenary.reload").reload_module("lualine", true) -- unload lualine before loading it, needed due to a reload bug
-require('lualine').setup {
-  options = {
-    theme = 'github'
-  }
-}
-
-require('nvim-web-devicons').setup() -- ensable devicons
-
-require('colorizer').setup() -- enable color higlighting
-
 
 --- Options  ---
 opt.mouse = 'a' -- enable mouse mode
@@ -75,7 +46,7 @@ map('', '<leader>c', '"+y') -- Copy to system clipboard
 map('n', '<leader>w', ':w<CR>') -- Save
 map('n', '<leader>q', ':q<CR>') -- Quit current window
 map('n', '<leader>qa', ':qa<CR>') -- Quit all windows
-map('n', '<leader>r', [[<cmd>lua require('util').reload_config()<CR>]], {noremap = true, silent = true}) -- Reload config files
+map('n', '<leader>r', [[<cmd>lua require('nwvi.util').reload_config()<CR>]], {noremap = true, silent = true}) -- Reload config files
 map('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 map('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
 map('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
