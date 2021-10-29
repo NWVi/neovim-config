@@ -71,14 +71,14 @@ return require('packer').startup(function()
   -- Statusline
   use { 
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
 
     require('plenary.reload').reload_module('lualine', true), -- unload lualine before loading it, needed due to a reload bug
-    require('lualine').setup {
+    require('lualine').setup({
       options = {
         theme = 'onedark'
       }
-  }
+    })
 
   }
 
@@ -96,9 +96,6 @@ return require('packer').startup(function()
     config = function()
       require('nwvi.config.tree')
     end
-    -- 'kyazdani42/nvim-tree.lua',
-    -- requires = 'kyazdani42/nvim-web-devicons',
-    -- config = function() require'nvim-tree'.setup {} end
   }
 
   use {
@@ -107,10 +104,13 @@ return require('packer').startup(function()
   }
 
   use {
-    'b3nj5m1n/kommentary',
-    keys = { 'gc', 'gcc' },
+    'numToStr/Comment.nvim',
     config = function()
-      require('nwvi.config.comments')
+        require('Comment').setup({
+          pre_hook = function(ctx)
+            return require('ts_context_commentstring.internal').calculate_commentstring()
+          end
+        })
     end,
     requires = 'JoosepAlviste/nvim-ts-context-commentstring',
   }
