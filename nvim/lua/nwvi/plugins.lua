@@ -10,6 +10,22 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
   use {
     'lukas-reineke/indent-blankline.nvim', -- Indentation guides
+    config = function()
+      require('indent_blankline').setup({
+        filetype_exclude = {
+          'man',
+          'diagnosticpopup',
+          'lspinfo',
+          'packer',
+          'TelescopePrompt',
+          'TelescopeResults',
+          ''
+        },
+        use_treesitter = true,
+        show_current_context = true,
+        buftype_exclude = { 'terminal' },
+      })
+    end
   }
   use 'christoomey/vim-tmux-navigator' -- Easy navigating between tmux and vim buffers
   use 'norcalli/nvim-colorizer.lua' -- Color highlighter
@@ -57,7 +73,7 @@ return require('packer').startup(function()
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
 
-    require("plenary.reload").reload_module("lualine", true), -- unload lualine before loading it, needed due to a reload bug
+    require('plenary.reload').reload_module('lualine', true), -- unload lualine before loading it, needed due to a reload bug
     require('lualine').setup {
       options = {
         theme = 'onedark'
@@ -86,21 +102,21 @@ return require('packer').startup(function()
   }
 
   use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
   }
 
   use {
-    "b3nj5m1n/kommentary",
-    keys = { "gc", "gcc" },
+    'b3nj5m1n/kommentary',
+    keys = { 'gc', 'gcc' },
     config = function()
       require('nwvi.config.comments')
     end,
-    requires = "JoosepAlviste/nvim-ts-context-commentstring",
+    requires = 'JoosepAlviste/nvim-ts-context-commentstring',
   }
 
   use {
-    "folke/which-key.nvim",
+    'folke/which-key.nvim',
     config = function()
       require('nwvi.config.keys')
     end
