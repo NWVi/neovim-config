@@ -37,10 +37,10 @@ map('n', '<C-p>', ':bprev<CR>') -- Previous buffer
 
 map('n', '<Esc>', ':nohlsearch<Bar>:echo<CR>', { silent = true }) -- Disable highlight and clear any message displayed
 
-require('nwvi.util')
+if require('nwvi.util.bootstrap-packer')() then
+  return
+end
+
 require('nwvi.settings')
 require('nwvi.plugins')
-
-require('nvim-web-devicons').setup() -- ensable devicons
-
-require('colorizer').setup() -- enable color higlighting
+require('nwvi.util')
