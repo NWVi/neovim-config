@@ -6,6 +6,7 @@ ts_configs.setup({
   ensure_installed = {
     'bash',
     'c',
+    'c_sharp',
     'cmake',
     'comment',
     'css',
@@ -26,7 +27,14 @@ ts_configs.setup({
     'vim',
     'vue',
     'yaml',
-  }
+  },
+  textsubjects = {
+    enable = true,
+    keymaps = {
+      ["."] = "textsubjects-smart",
+      [";"] = "textsubjects-container-outer",
+    },
+  },
 })
 
 -- Add Markdown
@@ -38,4 +46,3 @@ parser_config.markdown = {
     files = { "src/parser.c", "src/scanner.cc" },
   }
 }
-
