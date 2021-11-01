@@ -1,6 +1,8 @@
 -- Packer packages --
 return require('packer').startup(function()
-  use 'wbthomason/packer.nvim' -- Package manager
+  use {'wbthomason/packer.nvim', -- Package manager
+  opt = true
+}
 
   -- UI to select things (files, grep results, open buffers, etc...)
   use {
@@ -111,6 +113,9 @@ return require('packer').startup(function()
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    config = function()
+      require('nwvi.config.treesitter')
+    end
   }
 
   use {
