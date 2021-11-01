@@ -1,8 +1,6 @@
 -- Packer packages --
 return require('packer').startup(function()
-  use {'wbthomason/packer.nvim', -- Package manager
-  opt = true
-}
+  use 'wbthomason/packer.nvim' -- Package manager
 
   -- UI to select things (files, grep results, open buffers, etc...)
   use {
@@ -13,20 +11,7 @@ return require('packer').startup(function()
   use {
     'lukas-reineke/indent-blankline.nvim', -- Indentation guides
     config = function()
-      require('indent_blankline').setup({
-        filetype_exclude = {
-          'man',
-          'diagnosticpopup',
-          'lspinfo',
-          'packer',
-          'TelescopePrompt',
-          'TelescopeResults',
-          ''
-        },
-        use_treesitter = true,
-        show_current_context = true,
-        buftype_exclude = { 'terminal' },
-      })
+      require("nwvi.config.blankline")
     end
   }
 
@@ -58,10 +43,10 @@ return require('packer').startup(function()
                 gitgutter = false,
                 gitsigns = true,
                 telescope = true,
-                neogit = true,
+                neogit = false,
                 nvim_tree = true,
-                dashboard = true,
-                startify = true,
+                dashboard = false,
+                startify = false,
                 whichkey = true,
                 indent_blankline = true,
                 vim_illuminate = false,
@@ -91,7 +76,7 @@ return require('packer').startup(function()
           theme = 'onedark'
         }
       })
-    end,
+    end
   }
 
   use { -- Git symbols in symbolline
@@ -113,6 +98,10 @@ return require('packer').startup(function()
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    requires = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "RRethy/nvim-treesitter-textsubjects",
+    },
     config = function()
       require('nwvi.config.treesitter')
     end
@@ -120,14 +109,14 @@ return require('packer').startup(function()
 
   use {
     'numToStr/Comment.nvim',
+    requires = 'JoosepAlviste/nvim-ts-context-commentstring',
     config = function()
         require('Comment').setup({
-          pre_hook = function(ctx)
-            return require('ts_context_commentstring.internal').calculate_commentstring()
-          end
+         pre_hook = function(ctx)
+           return require('ts_context_commentstring.internal').calculate_commentstring()
+         end
         })
-    end,
-    requires = 'JoosepAlviste/nvim-ts-context-commentstring',
+    end
   }
 
   use {
@@ -135,6 +124,30 @@ return require('packer').startup(function()
     config = function()
       require('nwvi.config.keys')
     end
+  }
+
+  -- Highlighting TODO comments
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup()
+    end
+  }
+
+  -- Completion engine
+  use {
+    'ms-jpq/coq_nvim',
+    branch = 'coq',
+    event = 'VimEnter',
+    requires = {'ms-jpq/coq.artifacts', branch = 'artifacts'},
+    config = 'vim.cmd[[COQnow]]'
+  }
+
+  -- LSP
+  use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
   }
 
   use 'sindrets/diffview.nvim'
