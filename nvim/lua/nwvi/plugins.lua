@@ -1,3 +1,7 @@
+local function conf(name)
+  return require(string.format('nwvi.config.%s', name))
+end
+
 -- Packer packages --
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
@@ -5,13 +9,14 @@ return require('packer').startup(function()
   -- UI to select things (files, grep results, open buffers, etc...)
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { {'nvim-lua/plenary.nvim'} },
+    config = conf('telescope')
   }
 
   use {
     'lukas-reineke/indent-blankline.nvim', -- Indentation guides
     config = function()
-      require("nwvi.config.blankline")
+      require('nwvi.config.blankline')
     end
   }
 
@@ -63,7 +68,7 @@ return require('packer').startup(function()
 
   use {
     'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end 
+    run = function() vim.fn['firenvim#install'](0) end
   }
 
   -- Statusline
@@ -82,17 +87,13 @@ return require('packer').startup(function()
   use { -- Git symbols in symbolline
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('nwvi.config.gitsigns')
-    end
+    config = conf('gitsigns')
   }
 
   use { -- File explorer
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons' },
-    config = function()
-      require('nwvi.config.tree')
-    end
+    config = conf('tree')
   }
 
   use {
@@ -121,9 +122,7 @@ return require('packer').startup(function()
 
   use {
     'folke/which-key.nvim',
-    config = function()
-      require('nwvi.config.keys')
-    end
+    config = conf('keys')
   }
 
   -- Highlighting TODO comments
