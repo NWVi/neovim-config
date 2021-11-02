@@ -25,3 +25,5 @@ vim.opt.listchars = {
     precedes = "❮",
     nbsp = "_",
 }
+
+vim.opt.guifont = "FiraCode NF:h14"
