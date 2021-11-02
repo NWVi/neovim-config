@@ -9,7 +9,7 @@ return require('packer').startup(function()
   -- UI to select things (files, grep results, open buffers, etc...)
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} },
+    requires = { 'nvim-lua/plenary.nvim' },
     config = conf('telescope')
   }
 
@@ -38,24 +38,24 @@ return require('packer').startup(function()
             enable_treesitter = true,
             transparent_background = false,
             pumblend = {
-                enable = true,
-                transparency_amount = 20,
+              enable = true,
+              transparency_amount = 20,
             },
             plugins_integrations = {
-                neorg = false,
-                barbar = true,
-                bufferline = false,
-                gitgutter = false,
-                gitsigns = true,
-                telescope = true,
-                neogit = false,
-                nvim_tree = true,
-                dashboard = false,
-                startify = false,
-                whichkey = true,
-                indent_blankline = true,
-                vim_illuminate = false,
-                lspsaga = false,
+              neorg = false,
+              barbar = true,
+              bufferline = false,
+              gitgutter = false,
+              gitsigns = true,
+              telescope = true,
+              neogit = false,
+              nvim_tree = true,
+              dashboard = false,
+              startify = false,
+              whichkey = true,
+              indent_blankline = true,
+              vim_illuminate = false,
+              lspsaga = false,
             },
         })
     end
@@ -100,8 +100,8 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     requires = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "RRethy/nvim-treesitter-textsubjects",
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'RRethy/nvim-treesitter-textsubjects',
     },
     config = function()
       require('nwvi.config.treesitter')
@@ -110,7 +110,7 @@ return require('packer').startup(function()
 
   use {
     'numToStr/Comment.nvim',
-    requires = 'JoosepAlviste/nvim-ts-context-commentstring',
+    requires = { 'JoosepAlviste/nvim-ts-context-commentstring' },
     config = function()
         require('Comment').setup({
          pre_hook = function(ctx)
@@ -120,17 +120,12 @@ return require('packer').startup(function()
     end
   }
 
-  use {
-    'folke/which-key.nvim',
-    config = conf('keys')
-  }
-
   -- Highlighting TODO comments
   use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    'folke/todo-comments.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require("todo-comments").setup()
+      require('todo-comments').setup()
     end
   }
 
@@ -139,7 +134,7 @@ return require('packer').startup(function()
     'ms-jpq/coq_nvim',
     branch = 'coq',
     event = 'VimEnter',
-    requires = {'ms-jpq/coq.artifacts', branch = 'artifacts'},
+    requires = { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
     config = 'vim.cmd[[COQnow]]'
   }
 
@@ -151,4 +146,14 @@ return require('packer').startup(function()
 
   use 'sindrets/diffview.nvim'
 
+  -- Focus mode
+  use {
+    use 'Pocco81/TrueZen.nvim',
+    config = conf('zen')
+  }
+
+  use {
+    'folke/which-key.nvim',
+    config = conf('keys')
+  }
 end)

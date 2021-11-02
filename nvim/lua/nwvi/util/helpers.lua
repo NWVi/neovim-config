@@ -11,6 +11,7 @@ M.reload_config = function()
     vim.api.nvim_echo({ { 'Reloaded config' } }, false, {}) -- Don't add to message history
 end
 
+-- Mapping helpers
 M.keymap = {}
 
 local options = { noremap = true, silent = true }
