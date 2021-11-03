@@ -141,7 +141,8 @@ return require('packer').startup(function()
   -- LSP
   use {
     'neovim/nvim-lspconfig',
-    requires = { 'williamboman/nvim-lsp-installer', 'ms-jpq/coq_nvim' },
+    after = 'coq_nvim',
+    requires = { 'williamboman/nvim-lsp-installer' },
     config = conf('lsp')
   }
 

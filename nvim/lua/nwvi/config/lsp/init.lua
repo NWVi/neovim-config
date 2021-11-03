@@ -1,8 +1,7 @@
 return function()
   local nvim_lsp = require('lspconfig')
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  vim.cmd('COQnow')
-  -- local coq = require('coq')
+  local coq = require('coq')
 
   local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'angularls' }
 
