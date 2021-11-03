@@ -102,6 +102,7 @@ return require('packer').startup(function()
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
+      'p00f/nvim-ts-rainbow',
     },
     config = function()
       require('nwvi.config.treesitter')
@@ -135,7 +136,7 @@ return require('packer').startup(function()
     branch = 'coq',
     event = 'VimEnter',
     requires = { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
-    config = 'vim.cmd[[COQnow]]'
+    config = 'vim.cmd[[COQnow --shut-up]]'
   }
 
   -- LSP
@@ -148,9 +149,8 @@ return require('packer').startup(function()
 
   use 'sindrets/diffview.nvim'
 
-  -- Focus mode
   use {
-    use 'Pocco81/TrueZen.nvim',
+    'Pocco81/TrueZen.nvim',
     config = conf('zen')
   }
 
