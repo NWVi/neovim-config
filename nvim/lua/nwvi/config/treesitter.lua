@@ -35,6 +35,9 @@ ts_configs.setup({
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
   },
+  autotag = {
+    enable = true,
+  },
   textsubjects = {
     enable = true,
     keymaps = {

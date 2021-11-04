@@ -26,4 +26,4 @@ vim.opt.listchars = {
     nbsp = "_",
 }
 
-vim.opt.guifont = "FiraCode NF:h14"
+vim.opt.guifont = "FiraCode NF:h12"

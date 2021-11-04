@@ -21,6 +21,7 @@ return require('packer').startup(function()
   }
 
   use 'christoomey/vim-tmux-navigator' -- Easy navigating between tmux and vim buffers
+
   use {
     'norcalli/nvim-colorizer.lua', -- Color highlighter
     config = function()
@@ -28,7 +29,7 @@ return require('packer').startup(function()
     end
   }
 
-  use {
+  use { -- Colorscheme
     'NTBBloodbath/doom-one.nvim',
     config = function()
         require('doom-one').setup({
@@ -61,18 +62,18 @@ return require('packer').startup(function()
     end
   }
 
-  use { -- Bufferline
-    'romgrk/barbar.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
-  }
-
-  use {
+  use { -- Embed in web browsers
     'glacambre/firenvim',
     run = function() vim.fn['firenvim#install'](0) end
   }
 
-  -- Statusline
-  use { 
+  use { -- Bufferline
+    'romgrk/barbar.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = conf('barbar')
+  }
+
+  use { -- Statusline
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
@@ -96,20 +97,21 @@ return require('packer').startup(function()
     config = conf('tree')
   }
 
-  use {
+  use { -- Syntax tree
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
       'p00f/nvim-ts-rainbow',
+      'windwp/nvim-ts-autotag'
     },
     config = function()
       require('nwvi.config.treesitter')
     end
   }
 
-  use {
+  use { -- Commenting
     'numToStr/Comment.nvim',
     requires = { 'JoosepAlviste/nvim-ts-context-commentstring' },
     config = function()
@@ -121,8 +123,7 @@ return require('packer').startup(function()
     end
   }
 
-  -- Highlighting TODO comments
-  use {
+  use { -- Highlighting TODO comments
     'folke/todo-comments.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -130,8 +131,7 @@ return require('packer').startup(function()
     end
   }
 
-  -- Completion engine
-  use {
+  use { -- Completion engine
     'ms-jpq/coq_nvim',
     branch = 'coq',
     event = 'VimEnter',
@@ -139,8 +139,7 @@ return require('packer').startup(function()
     config = 'vim.cmd[[COQnow --shut-up]]'
   }
 
-  -- LSP
-  use {
+  use { -- LSP
     'neovim/nvim-lspconfig',
     after = 'coq_nvim',
     requires = { 'williamboman/nvim-lsp-installer' },

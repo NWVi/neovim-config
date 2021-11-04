@@ -1,17 +1,13 @@
 return function()
-  local nvim_lsp = require('lspconfig')
+  local lsp_installer = require('nvim-lsp-installer')
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   local coq = require('coq')
 
   local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'angularls' }
 
-  -- Enable the following language servers
-  -- for _, server in ipairs(servers) do
-  --   nvim_lsp[server].setup({coq.lsp_ensure_capabilities({
-  --   })})
-  -- end
-    for _, lsp in ipairs(servers) do
-      nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
-      }))
-    end
+  lsp_installer.on_server_ready(function(server)
+    local opts = {}
+
+    server:setup(coq.lsp_ensure_capabilities(opts))
+  end)
 end

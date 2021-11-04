@@ -13,6 +13,6 @@ return function()
     }
   })
 
-  map('n', '<leader>zf', ':TZFocus')
-  map('n', '<leader>za', ':TzAtaraxis')
+  map('n', '<leader>zf', ':TZFocus<CR>')
+  map('n', '<leader>za', ':TZAtaraxis<CR>')
 end
