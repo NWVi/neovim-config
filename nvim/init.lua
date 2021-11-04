@@ -24,27 +24,6 @@ map('n', '<M-j>', ':TmuxNavigateDown<CR>') -- Navigate down (buffer and tmux)
 map('n', '<M-k>', ':TmuxNavigateUp<CR>') -- Navigate up (buffer and tmux)
 map('n', '<M-l>', ':TmuxNavigateRight<CR>') -- Navigate right (buffer and tmux)
 
---- Barbar ---
--- Move to previous/next
-map('n', '<A-,>', ':BufferPrevious<CR>')
-map('n', '<A-.>', ':BufferNext<CR>')
--- Re-order to previous/next
-map('n', '<A-<>', ':BufferMovePrevious<CR>')
-map('n', '<A->>', ' :BufferMoveNext<CR>')
--- Goto buffer in position...
-map('n', '<A-1>', ':BufferGoto 1<CR>')
-map('n', '<A-2>', ':BufferGoto 2<CR>')
-map('n', '<A-3>', ':BufferGoto 3<CR>')
-map('n', '<A-4>', ':BufferGoto 4<CR>')
-map('n', '<A-5>', ':BufferGoto 5<CR>')
-map('n', '<A-6>', ':BufferGoto 6<CR>')
-map('n', '<A-7>', ':BufferGoto 7<CR>')
-map('n', '<A-8>', ':BufferGoto 8<CR>')
-map('n', '<A-9>', ':BufferGoto 9<CR>')
-map('n', '<A-0>', ':BufferLast<CR>')
--- Close buffer
-map('n', '<A-c>', ':BufferClose<CR>')
-
 if require('nwvi.util.bootstrap-packer')() then
   return
 end
