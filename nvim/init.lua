@@ -5,7 +5,7 @@ map('', '<leader>c', '"+y') -- Copy to system clipboard
 map('n', '<leader>w', ':w<CR>') -- Save
 map('n', '<leader>q', ':q<CR>') -- Quit current window
 map('n', '<leader>qa', ':qa<CR>') -- Quit all windows
-map('n', '<leader>r', [[<cmd>lua require('nwvi.util').reload_config()<CR>]]) -- Reload config files
+map('n', '<leader>r', [[<cmd>lua require('nwvi.util.helpers').reload_config()<CR>]]) -- Reload config files
 map('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
 map('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]])
 map('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
