@@ -28,6 +28,10 @@ ts_configs.setup({
     'vue',
     'yaml',
   },
+  highlight = {
+    enable = true,
+    additiona_vim_regex_highlighting = false,
+  },
   rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
@@ -46,6 +50,10 @@ ts_configs.setup({
     },
   },
 })
+
+vim.cmd('set foldmethod=expr')
+vim.cmd('set foldexpr=nvim_treesitter#foldexpr()')
+vim.cmd('set foldlevelstart=99')
 
 -- Add Markdown
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
