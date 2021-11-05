@@ -3,6 +3,7 @@ return function()
   if not nvim_tree then
     return
   end
+  local map = require('nwvi.util.helpers').keymap.map
 
   require("nvim-tree.events").on_nvim_tree_ready(function()
     vim.cmd("NvimTreeRefresh")
@@ -46,4 +47,6 @@ return function()
       error= "",
     }
   }
+
+  map('n', '<F3>', '<cmd>NvimTreeFindFileToggle<CR>')
 end
