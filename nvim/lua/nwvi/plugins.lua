@@ -31,35 +31,7 @@ return require('packer').startup(function()
 
   use { -- Colorscheme
     'NTBBloodbath/doom-one.nvim',
-    config = function()
-        require('doom-one').setup({
-            cursor_coloring = false,
-            terminal_colors = false,
-            italic_comments = true,
-            enable_treesitter = true,
-            transparent_background = false,
-            pumblend = {
-              enable = true,
-              transparency_amount = 20,
-            },
-            plugins_integrations = {
-              neorg = false,
-              barbar = true,
-              bufferline = false,
-              gitgutter = false,
-              gitsigns = true,
-              telescope = true,
-              neogit = false,
-              nvim_tree = true,
-              dashboard = false,
-              startify = false,
-              whichkey = true,
-              indent_blankline = true,
-              vim_illuminate = false,
-              lspsaga = false,
-            },
-        })
-    end
+    config = conf('theme')
   }
 
   use { -- Embed in web browsers
@@ -145,6 +117,14 @@ return require('packer').startup(function()
     requires = { 'williamboman/nvim-lsp-installer' },
     config = conf('lsp')
   }
+
+  use({
+    'folke/trouble.nvim',
+    event = 'BufReadPre',
+    wants = 'nvim-web-devicons',
+    cmd = { 'TroubleToggle', 'Trouble' },
+    config = conf('trouble')
+  })
 
   use 'sindrets/diffview.nvim'
 
