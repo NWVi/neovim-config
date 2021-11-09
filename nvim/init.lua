@@ -31,3 +31,5 @@ end
 require('nwvi.settings')
 require('nwvi.plugins')
 require('nwvi.util')
+
+vim.cmd([[autocmd BufWritePre * lua require('nwvi.util.helpers').mkdir()]])

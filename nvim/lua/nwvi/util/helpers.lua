@@ -1,5 +1,14 @@
 local M = {}
 
+-- Make directory
+function M.mkdir()
+  local dir = vim.fn.expand('%:p:h')
+
+  if vim.fn.isdirectory(dir) == 0 then
+    vim.fn.mkdir(dir, 'p')
+  end
+end
+
 -- Reloads config for nvim so I don't need to reopen buffer in some cases
 M.reload_config = function()
   for pkg, _ in pairs(package.loaded) do
