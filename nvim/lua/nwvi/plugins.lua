@@ -103,17 +103,26 @@ return require('packer').startup(function()
     end
   }
 
-  use { -- Completion engine
-    'ms-jpq/coq_nvim',
-    branch = 'coq',
-    event = 'VimEnter',
-    requires = { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
-    config = 'vim.cmd[[COQnow --shut-up]]'
+  use { -- Autocompletion plugin
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'saadparwaiz1/cmp_luasnip',
+      'L3MON4D3/LuaSnip' -- Snippets plugin
+    },
+    config = conf('cmp')
   }
+  -- use { -- Completion engine
+  --   'ms-jpq/coq_nvim',
+  --   branch = 'coq',
+  --   event = 'VimEnter',
+  --   requires = { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
+  --   config = 'vim.cmd[[COQnow --shut-up]]'
+  -- }
 
   use { -- LSP
     'neovim/nvim-lspconfig',
-    after = 'coq_nvim',
+    after = 'nvim-cmp',
     requires = {
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       'jose-elias-alvarez/null-ls.nvim',

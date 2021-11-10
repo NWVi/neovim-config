@@ -6,7 +6,8 @@ return function()
 
   local lsp_installer = require('nvim-lsp-installer')
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  local coq = require('coq')
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  -- local coq = require('coq')
   local lua_buf_map = require('nwvi.util.helpers').keymap.lua_buf_map
 
   local ngserver = vim.fn.stdpath('data')..'/lsp_servers/angularls/node_modules/.bin/ngserver'
@@ -57,8 +58,9 @@ return function()
     }
 
     server:setup(
-      coq.lsp_ensure_capabilities(server_opts[server.name] and server_opts[server.name]() or default_opts)
+      -- coq.lsp_ensure_capabilities(server_opts[server.name] and server_opts[server.name]() or default_opts)
+        server_opts[server.name] and server_opts[server.name]() or default_opts
     )
-    vim.cmd('do User LspAttachBuffers')
+    -- vim.cmd('do User LspAttachBuffers')
   end)
 end
