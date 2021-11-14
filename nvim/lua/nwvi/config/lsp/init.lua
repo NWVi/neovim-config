@@ -54,6 +54,22 @@ return function()
             new_config.cmd = angular_cmd
           end
         })
+      end,
+
+      ['gopls'] = function()
+        return vim.tbl_deep_extend("force", default_opts, {
+          cmd = {'gopls'},
+          settings = {
+            gopls = {
+              experimentalPostfixCompletions = true,
+              analyses = {
+                unusedparams = true,
+                shadow = true,
+              },
+              staticcheck = true,
+            },
+          }
+        })
       end
     }
 
