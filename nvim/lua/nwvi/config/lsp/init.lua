@@ -33,6 +33,10 @@ return function()
     lua_buf_map('n', ']d', 'vim.lsp.diagnostic.goto_next()')
     lua_buf_map('n', '<space>lq', 'vim.lsp.diagnostic.set_loclist()')
     lua_buf_map('n', '<leader>f', 'vim.lsp.buf.formatting()')
+
+    if client.resolved_capabilities.document_formatting then
+      vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+    end
   end
 
   lsp_installer.on_server_ready(function(server)

@@ -8,6 +8,7 @@ function M.setup(options)
       nls.builtins.formatting.gofmt,
       nls.builtins.formatting.rustfmt,
       nls.builtins.formatting.black,
+      nls.builtins.formatting.trim_whitespace,
     }
   })
   require('lspconfig')['null-ls'].setup(options)
