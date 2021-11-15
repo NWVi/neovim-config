@@ -9,7 +9,12 @@ return function()
     defaults = {
       vimgrep_arguments = {
         'rg',
+        '--column',
+        '--line-number',
+        '--no-heading',
+        '--color=never',
         '--smart-case',
+        '--with-filename',
       },
       mappings = {
         i = {
