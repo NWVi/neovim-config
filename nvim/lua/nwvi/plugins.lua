@@ -112,13 +112,6 @@ return require('packer').startup(function()
     },
     config = conf('cmp')
   }
-  -- use { -- Completion engine
-  --   'ms-jpq/coq_nvim',
-  --   branch = 'coq',
-  --   event = 'VimEnter',
-  --   requires = { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
-  --   config = 'vim.cmd[[COQnow --shut-up]]'
-  -- }
 
   use { -- LSP
     'neovim/nvim-lspconfig',

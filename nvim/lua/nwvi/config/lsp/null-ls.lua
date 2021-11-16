@@ -3,24 +3,26 @@ local M = {}
 function M.setup(options)
   local nls = require('null-ls')
   nls.config({
+    debug = true,
     sources = {
       nls.builtins.formatting.prettierd,
       nls.builtins.formatting.gofmt,
       nls.builtins.formatting.rustfmt,
       nls.builtins.formatting.black,
       nls.builtins.formatting.trim_whitespace,
+      nls.builtins.hover.dictionary,
     }
   })
   require('lspconfig')['null-ls'].setup(options)
 end
 
 function M.has_formatter(ft)
-  local config = require('null-ls.config').get()
-  local formatters = config._generators['NULL_LS_FORMATTING']
-  for _, f in ipairs(formatters) do
-    if vim.tbl_contains(f.filetypes, ft) then
-      return true
-    end
+  print(ft)
+  local sources = require("null-ls.info").get_active_sources()
+  local method = require("null-ls").methods.FORMATTING
+  if sources then
+    print(vim.inspect(formatters))
+    return true
   end
 end
 
