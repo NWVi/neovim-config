@@ -17,11 +17,9 @@ function M.setup(options)
 end
 
 function M.has_formatter(ft)
-  print(ft)
   local sources = require("null-ls.info").get_active_sources()
   local method = require("null-ls").methods.FORMATTING
   if sources then
-    print(vim.inspect(formatters))
     return true
   end
 end
