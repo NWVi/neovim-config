@@ -135,6 +135,8 @@ return require('packer').startup(function()
 
   use 'sindrets/diffview.nvim'
 
+  use 'machakann/vim-sandwich' -- Surround
+
   use {
     'Pocco81/TrueZen.nvim',
     config = conf('zen')
