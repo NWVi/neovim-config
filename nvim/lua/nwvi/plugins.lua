@@ -137,6 +137,8 @@ return require('packer').startup(function()
 
   use 'machakann/vim-sandwich' -- Surround
 
+  use 'mattn/emmet-vim'
+
   use {
     'Pocco81/TrueZen.nvim',
     config = conf('zen')
