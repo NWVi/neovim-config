@@ -12,11 +12,12 @@ return function()
   nvim_tree.setup({
     filters = {
       doftiles = false,
-      custom = { '.git' } -- Hide these files
+      custom = { '.git' }, -- Hide these files
+    },
+    git = {
+      ignore = true,
     }
   })
-
-  vim.g.nvim_tree_gitignore = 1
 
   vim.g.nvim_tree_icons = {
     default= '',

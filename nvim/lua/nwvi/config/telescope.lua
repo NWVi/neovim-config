@@ -8,13 +8,14 @@ return function()
   telescope.setup({
     defaults = {
       vimgrep_arguments = {
-        'rg',
-        '--column',
-        '--line-number',
-        '--no-heading',
-        '--color=never',
-        '--smart-case',
-        '--with-filename',
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+        "--trim" -- add this value
       },
       mappings = {
         i = {
@@ -25,7 +26,7 @@ return function()
     pickers = {
       find_files = {
         find_command = {
-          'rg', '--files', '--hidden', '--glob', '!.git/*'
+          'rg', '--files', '--hidden', '--ignore'
         }
       }
     }

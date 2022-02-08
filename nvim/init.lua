@@ -8,13 +8,6 @@ map('n', '<leader>qa', ':qa<CR>') -- Quit all windows
 map('n', '<leader>r', [[<cmd>lua require('nwvi.util.helpers').reload_config()<CR>]]) -- Reload config files
 map('n', '<Esc>', ':nohlsearch<Bar>:echo<CR>', { silent = true }) -- Disable highlight and clear any message displayed
 
---- TMUX ---
-vim.g.tmux_navigator_no_mappings = true
-map('n', '<M-h>', ':TmuxNavigateLeft<CR>') -- Navigate left (buffer and tmux)
-map('n', '<M-j>', ':TmuxNavigateDown<CR>') -- Navigate down (buffer and tmux)
-map('n', '<M-k>', ':TmuxNavigateUp<CR>') -- Navigate up (buffer and tmux)
-map('n', '<M-l>', ':TmuxNavigateRight<CR>') -- Navigate right (buffer and tmux)
-
 if require('nwvi.util.bootstrap-packer')() then
   return
 end
