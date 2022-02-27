@@ -26,7 +26,7 @@ return function()
     pickers = {
       find_files = {
         find_command = {
-          'rg', '--files', '--hidden', '--ignore'
+          'rg', '--files', '--hidden', '--ignore', '--glob', '!.git'
         }
       }
     }
