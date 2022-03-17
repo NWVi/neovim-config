@@ -1,23 +1,25 @@
+local nls = require('null-ls')
+
+local sources = {
+  nls.builtins.formatting.prettierd,
+  nls.builtins.formatting.gofmt,
+  nls.builtins.formatting.rustfmt,
+  nls.builtins.formatting.black,
+  nls.builtins.formatting.trim_whitespace,
+  nls.builtins.hover.dictionary,
+}
+
 local M = {}
 
-function M.setup(options)
-  local nls = require('null-ls')
-  nls.config({
-    debug = true,
-    sources = {
-      nls.builtins.formatting.prettierd,
-      nls.builtins.formatting.gofmt,
-      nls.builtins.formatting.rustfmt,
-      nls.builtins.formatting.black,
-      nls.builtins.formatting.trim_whitespace,
-      nls.builtins.hover.dictionary,
-    }
+M.setup = function(options)
+  nls.setup({
+    -- debug = true,
+    sources = sources
   })
-  require('lspconfig')['null-ls'].setup(options)
 end
 
 function M.has_formatter(ft)
-  local sources = require("null-ls.info").get_active_sources()
+  -- local sources = require("null-ls.info").get_active_sources()
   local method = require("null-ls").methods.FORMATTING
   if sources then
     return true
