@@ -20,6 +20,7 @@ return require('packer').startup(function()
     end
   }
 
+  -- Navigation
   use {
     'knubie/vim-kitty-navigator', -- Easy navigating between tmux and vim buffers
     run = 'cp ./*.py ~/.config/kitty/',
@@ -128,8 +129,15 @@ return require('packer').startup(function()
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-nvim-lsp',
-      'saadparwaiz1/cmp_luasnip',
-      'L3MON4D3/LuaSnip' -- Snippets plugin
+      "hrsh7th/cmp-buffer", -- buffer completions
+      "hrsh7th/cmp-path", -- path completions
+      "hrsh7th/cmp-cmdline", -- cmdline completions
+      "saadparwaiz1/cmp_luasnip", -- snippet completions
+      {
+        'L3MON4D3/LuaSnip', -- Snippets plugin
+        wants = 'friendly-snippets',
+      },
+      use "rafamadriz/friendly-snippets" -- a bunch of snippets to
     },
     config = conf('cmp')
   }
@@ -140,7 +148,7 @@ return require('packer').startup(function()
     requires = {
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       'jose-elias-alvarez/null-ls.nvim',
-      'williamboman/nvim-lsp-installer',
+      'williamboman/nvim-lsp-installer', -- simple to use language server installer
       "folke/lua-dev.nvim",
     },
     config = conf('lsp')
