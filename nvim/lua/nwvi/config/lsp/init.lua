@@ -6,11 +6,6 @@ return function()
 
   local lsp_installer = require('nvim-lsp-installer')
 
-  local ngserver = vim.fn.stdpath('data') .. '/lsp_servers/angularls/node_modules/.bin/ngserver'
-  local nglsPath = vim.fn.stdpath('data') .. '/lsp_servers/angularls/node_modules'
-  local tsserverPath = vim.fn.stdpath('data') .. '/lsp_servers/tsserver/node_modules'
-  local angular_cmd = { ngserver, '--stdio', '--ngProbeLocations', nglsPath, '--tsProbeLocations', tsserverPath }
-
   local function on_attach(client, bufnr)
     require('nwvi.config.lsp.keys').setup(client, bufnr)
 
@@ -35,15 +30,6 @@ return function()
       ['sumneko_lua'] = function()
         return require('lua-dev').setup({
           lspconfig = default_opts,
-        })
-      end,
-
-      ['angularls'] = function()
-        return vim.tbl_deep_extend('force', default_opts, {
-          cmd = angular_cmd,
-          on_new_config = function(new_config)
-            new_config.cmd = angular_cmd
-          end,
         })
       end,
 
