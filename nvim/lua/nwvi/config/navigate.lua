@@ -7,7 +7,7 @@ else
   vim.g.tmux_navigator_no_mappings = true
 end
 
-map('n', '<M-h>', ':'..navTool..'NavigateLeft<CR>') -- Navigate left (buffer and tmux)
-map('n', '<M-j>', ':'..navTool..'NavigateDown<CR>') -- Navigate down (buffer and tmux)
-map('n', '<M-k>', ':'..navTool..'NavigateUp<CR>') -- Navigate up (buffer and tmux)
-map('n', '<M-l>', ':'..navTool..'NavigateRight<CR>') -- Navigate right (buffer and tmux)
+map('n', '<M-h>', ':' .. navTool .. 'NavigateLeft<CR>') -- Navigate left (buffer and tmux)
+map('n', '<M-j>', ':' .. navTool .. 'NavigateDown<CR>') -- Navigate down (buffer and tmux)
+map('n', '<M-k>', ':' .. navTool .. 'NavigateUp<CR>') -- Navigate up (buffer and tmux)
+map('n', '<M-l>', ':' .. navTool .. 'NavigateRight<CR>') -- Navigate right (buffer and tmux)

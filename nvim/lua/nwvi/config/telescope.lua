@@ -4,18 +4,18 @@ return function()
     return
   end
 
-  local actions = require 'telescope.actions'
+  local actions = require('telescope.actions')
   telescope.setup({
     defaults = {
       vimgrep_arguments = {
-        "rg",
-        "--color=never",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-        "--trim" -- add this value
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case',
+        '--trim', -- add this value
       },
       mappings = {
         i = {
@@ -26,12 +26,16 @@ return function()
     pickers = {
       find_files = {
         find_command = {
-          'rg', '--files', '--hidden', '--ignore', '--glob', '!.git'
-        }
-      }
-    }
+          'rg',
+          '--files',
+          '--hidden',
+          '--ignore',
+          '--glob',
+          '!.git',
+        },
+      },
+    },
   })
-
 
   local map = require('nwvi.util.helpers').keymap.map
   map('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])

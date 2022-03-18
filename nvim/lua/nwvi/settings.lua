@@ -12,20 +12,20 @@ vim.opt.number = true -- show numbers
 vim.opt.ignorecase = true -- Case insensitive
 vim.opt.smartcase = true -- Case insensitive unless /C or capital in search
 vim.opt.updatetime = 250 -- milliseconds from typing to saving swap file
-vim.opt.termguicolors=true -- True color support
+vim.opt.termguicolors = true -- True color support
 vim.opt.hidden = true -- Do not save when switching buffers
 
 -- Display options for hidden charactrs --
 vim.opt.list = true -- show some invisible characters
 vim.opt.listchars = {
-    space = "⋅",
-    tab = "__",
-    trail = "•",
-    extends = "❯",
-    precedes = "❮",
-    nbsp = "_",
+  space = '⋅',
+  tab = '__',
+  trail = '•',
+  extends = '❯',
+  precedes = '❮',
+  nbsp = '_',
 }
 
-vim.opt.guifont = "FiraCode NF:h12"
+vim.opt.guifont = 'FiraCode NF:h12'
 
 vim.cmd([[autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4]])

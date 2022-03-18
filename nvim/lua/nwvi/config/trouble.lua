@@ -1,7 +1,7 @@
 return function()
   local trouble = safe_require('trouble')
-  if not trouble
-    then return
+  if not trouble then
+    return
   end
   local map = require('nwvi.util.helpers').keymap.map
 

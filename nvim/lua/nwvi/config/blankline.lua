@@ -1,4 +1,3 @@
-
 require('indent_blankline').setup({
   filetype_exclude = {
     'man',
@@ -7,7 +6,7 @@ require('indent_blankline').setup({
     'packer',
     'TelescopePrompt',
     'TelescopeResults',
-    ''
+    '',
   },
   use_treesitter = true,
   show_current_context = true,
@@ -15,4 +14,4 @@ require('indent_blankline').setup({
 })
 
 -- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
-vim.wo.colorcolumn = "99999"
+vim.wo.colorcolumn = '99999'

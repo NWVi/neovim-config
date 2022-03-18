@@ -20,7 +20,7 @@ return function()
   map('n', '<A-0>', ':BufferLast<CR>')
   -- Close buffer
   map('n', '<A-c>', ':BufferClose<CR>')
-    -- Close buffer
+  -- Close buffer
   map('n', '<A-c>', ':BufferClose<CR>')
   -- Wipeout buffer
   --                 :BufferWipeout<CR>

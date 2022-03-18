@@ -4,24 +4,24 @@ end
 
 -- Packer packages --
 return require('packer').startup(function()
-  use 'wbthomason/packer.nvim' -- Package manager
+  use('wbthomason/packer.nvim') -- Package manager
 
   -- UI to select things (files, grep results, open buffers, etc...)
-  use {
+  use({
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = conf('telescope')
-  }
+    config = conf('telescope'),
+  })
 
-  use {
+  use({
     'lukas-reineke/indent-blankline.nvim', -- Indentation guides
     config = function()
       require('nwvi.config.blankline')
-    end
-  }
+    end,
+  })
 
   -- Navigation
-  use {
+  use({
     'knubie/vim-kitty-navigator', -- Easy navigating between tmux and vim buffers
     run = 'cp ./*.py ~/.config/kitty/',
     opt = true,
@@ -30,10 +30,10 @@ return require('packer').startup(function()
     end,
     cond = function()
       return vim.env.KITTY_PID ~= nil
-    end
-  }
+    end,
+  })
 
-  use {
+  use({
     'christoomey/vim-tmux-navigator', -- Easy navigating between tmux and vim buffers
     opt = true,
     config = function()
@@ -41,140 +41,142 @@ return require('packer').startup(function()
     end,
     cond = function()
       return vim.env.KITTY_PID == nil
-    end
-  }
+    end,
+  })
 
-  use {
+  use({
     'norcalli/nvim-colorizer.lua', -- Color highlighter
     config = function()
       require('colorizer').setup() -- enable color higlighting
-    end
-  }
+    end,
+  })
 
-  use { -- colorscheme
+  use({ -- colorscheme
     'olimorris/onedarkpro.nvim',
-    config = conf('theme')
-  }
+    config = conf('theme'),
+  })
 
-  use { -- Embed in web browsers
+  use({ -- Embed in web browsers
     'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end
-  }
+    run = function()
+      vim.fn['firenvim#install'](0)
+    end,
+  })
 
-  use { -- Bufferline
+  use({ -- Bufferline
     'romgrk/barbar.nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
-    config = conf('barbar')
-  }
+    config = conf('barbar'),
+  })
 
-  use { -- Statusline
+  use({ -- Statusline
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'auto'
-        }
+          theme = 'auto',
+        },
       })
-    end
-  }
+    end,
+  })
 
-  use { -- Git symbols in symbolline
+  use({ -- Git symbols in symbolline
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = conf('gitsigns')
-  }
+    config = conf('gitsigns'),
+  })
 
-  use { -- File explorer
+  use({ -- File explorer
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons' },
-    config = conf('tree')
-  }
+    config = conf('tree'),
+  })
 
-  use { -- Syntax tree
+  use({ -- Syntax tree
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
       'p00f/nvim-ts-rainbow',
-      'windwp/nvim-ts-autotag'
+      'windwp/nvim-ts-autotag',
     },
     config = function()
       require('nwvi.config.treesitter')
-    end
-  }
+    end,
+  })
 
-  use { -- Commenting
+  use({ -- Commenting
     'numToStr/Comment.nvim',
     requires = { 'JoosepAlviste/nvim-ts-context-commentstring' },
     config = function()
-        require('Comment').setup({
-         pre_hook = function(ctx)
-           return require('ts_context_commentstring.internal').calculate_commentstring()
-         end
-        })
-    end
-  }
+      require('Comment').setup({
+        pre_hook = function(ctx)
+          return require('ts_context_commentstring.internal').calculate_commentstring()
+        end,
+      })
+    end,
+  })
 
-  use { -- Highlighting TODO comments
+  use({ -- Highlighting TODO comments
     'folke/todo-comments.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('todo-comments').setup()
-    end
-  }
+    end,
+  })
 
-  use { -- Autocompletion plugin
+  use({ -- Autocompletion plugin
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-nvim-lsp',
-      "hrsh7th/cmp-buffer", -- buffer completions
-      "hrsh7th/cmp-path", -- path completions
-      "hrsh7th/cmp-cmdline", -- cmdline completions
-      "saadparwaiz1/cmp_luasnip", -- snippet completions
+      'hrsh7th/cmp-buffer', -- buffer completions
+      'hrsh7th/cmp-path', -- path completions
+      'hrsh7th/cmp-cmdline', -- cmdline completions
+      'saadparwaiz1/cmp_luasnip', -- snippet completions
       {
         'L3MON4D3/LuaSnip', -- Snippets plugin
         wants = 'friendly-snippets',
       },
-      use "rafamadriz/friendly-snippets" -- a bunch of snippets to
+      use('rafamadriz/friendly-snippets'), -- a bunch of snippets to
     },
-    config = conf('cmp')
-  }
+    config = conf('cmp'),
+  })
 
-  use { -- LSP
+  use({ -- LSP
     'neovim/nvim-lspconfig',
     after = 'nvim-cmp',
     requires = {
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       'jose-elias-alvarez/null-ls.nvim',
       'williamboman/nvim-lsp-installer', -- simple to use language server installer
-      "folke/lua-dev.nvim",
+      'folke/lua-dev.nvim',
     },
-    config = conf('lsp')
-  }
+    config = conf('lsp'),
+  })
 
   use({
     'folke/trouble.nvim',
     event = 'BufReadPre',
     wants = 'nvim-web-devicons',
     cmd = { 'TroubleToggle', 'Trouble' },
-    config = conf('trouble')
+    config = conf('trouble'),
   })
 
-  use 'sindrets/diffview.nvim'
+  use('sindrets/diffview.nvim')
 
-  use 'machakann/vim-sandwich' -- Surround
+  use('machakann/vim-sandwich') -- Surround
 
-  use 'mattn/emmet-vim'
+  use('mattn/emmet-vim')
 
-  use {
+  use({
     'Pocco81/TrueZen.nvim',
-    config = conf('zen')
-  }
+    config = conf('zen'),
+  })
 
-  use {
+  use({
     'folke/which-key.nvim',
-    config = conf('keys')
-  }
+    config = conf('keys'),
+  })
 end)

@@ -45,8 +45,8 @@ ts_configs.setup({
   textsubjects = {
     enable = true,
     keymaps = {
-      ["."] = "textsubjects-smart",
-      [";"] = "textsubjects-container-outer",
+      ['.'] = 'textsubjects-smart',
+      [';'] = 'textsubjects-container-outer',
     },
   },
 })
@@ -56,11 +56,11 @@ vim.cmd('set foldexpr=nvim_treesitter#foldexpr()')
 vim.cmd('set foldlevelstart=99')
 
 -- Add Markdown
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
 parser_config.jsonc.filetype_to_parsername = 'json'
 parser_config.markdown = {
   install_info = {
-    url = "https://github.com/ikatyang/tree-sitter-markdown",
-    files = { "src/parser.c", "src/scanner.cc" },
-  }
+    url = 'https://github.com/ikatyang/tree-sitter-markdown',
+    files = { 'src/parser.c', 'src/scanner.cc' },
+  },
 }

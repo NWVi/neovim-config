@@ -1,11 +1,11 @@
-return function ()
+return function()
   local cmp = safe_require('cmp')
   local luasnip = safe_require('luasnip')
   if not cmp and luasnip then
     return
   end
 
-  cmp.setup {
+  cmp.setup({
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body)
@@ -18,10 +18,10 @@ return function ()
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] = cmp.mapping.confirm {
+      ['<CR>'] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
-      },
+      }),
       ['<Tab>'] = function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -45,5 +45,5 @@ return function ()
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
     },
-  }
+  })
 end

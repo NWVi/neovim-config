@@ -10,7 +10,7 @@ return function()
       tmux = true,
       gitsigns = true,
       lualine = true,
-    }
+    },
   })
 
   map('n', '<leader>zf', ':TZFocus<CR>')

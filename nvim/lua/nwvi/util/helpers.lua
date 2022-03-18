@@ -20,7 +20,7 @@ M.reload_config = function()
   dofile(vim.env.MYVIMRC)
   vim.cmd('PackerCompile')
 
-  vim.api.nvim_echo({ {'Reloaded config'} }, true, {})
+  vim.api.nvim_echo({ { 'Reloaded config' } }, true, {})
 end
 
 -- Mapping helpers
@@ -37,11 +37,11 @@ function M.keymap.buf_map(mode, keys, actions, opts)
 end
 
 function M.keymap.lua_map(mode, keys, cmd)
-  M.keymap.map(mode, keys, '<cmd>lua '..cmd..'<CR>')
+  M.keymap.map(mode, keys, '<cmd>lua ' .. cmd .. '<CR>')
 end
 
 function M.keymap.lua_buf_map(mode, keys, cmd)
-  M.keymap.buf_map(mode, keys, '<cmd>lua '..cmd..'<CR>')
+  M.keymap.buf_map(mode, keys, '<cmd>lua ' .. cmd .. '<CR>')
 end
 
 return M
