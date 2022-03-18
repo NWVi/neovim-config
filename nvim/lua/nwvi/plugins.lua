@@ -51,8 +51,8 @@ return require('packer').startup(function()
     end
   }
 
-  use { -- Colorscheme
-    'NTBBloodbath/doom-one.nvim',
+  use { -- colorscheme
+    'olimorris/onedarkpro.nvim',
     config = conf('theme')
   }
 
@@ -73,7 +73,7 @@ return require('packer').startup(function()
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'onedark'
+          theme = 'auto'
         }
       })
     end
