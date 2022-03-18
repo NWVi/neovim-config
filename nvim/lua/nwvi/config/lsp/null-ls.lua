@@ -1,12 +1,13 @@
 local nls = require('null-ls')
+local formatting = nls.builtins.formatting
 
 local sources = {
-  nls.builtins.formatting.prettierd,
-  nls.builtins.formatting.gofmt,
-  nls.builtins.formatting.rustfmt,
-  nls.builtins.formatting.black,
-  nls.builtins.formatting.trim_whitespace,
-  nls.builtins.hover.dictionary,
+  formatting.black,
+  formatting.gofmt,
+  formatting.prettierd,
+  formatting.rustfmt,
+  formatting.stylua,
+  formatting.trim_whitespace,
 }
 
 local M = {}
@@ -14,13 +15,23 @@ local M = {}
 M.setup = function(options)
   nls.setup({
     -- debug = true,
-    sources = sources
+    sources = sources,
+
+    on_attach = function(client) -- Format on save
+      if client.resolved_capabilities.document_formatting then
+        vim.cmd([[
+          augroup LspFormatting
+              autocmd! * <buffer>
+              autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+          augroup END
+          ]])
+      end
+    end,
   })
 end
 
 function M.has_formatter(ft)
-  -- local sources = require("null-ls.info").get_active_sources()
-  local method = require("null-ls").methods.FORMATTING
+  -- local method = require('null-ls').methods.FORMATTING
   if sources then
     return true
   end

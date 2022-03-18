@@ -5,21 +5,22 @@ return function()
   require('nwvi.config.lsp.diagnostics')
 
   local lsp_installer = require('nvim-lsp-installer')
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-  local ngserver = vim.fn.stdpath('data')..'/lsp_servers/angularls/node_modules/.bin/ngserver'
-  local nglsPath = vim.fn.stdpath('data')..'/lsp_servers/angularls/node_modules'
-  local tsserverPath = vim.fn.stdpath('data')..'/lsp_servers/tsserver/node_modules'
-  local angular_cmd = {ngserver, "--stdio", "--ngProbeLocations", nglsPath, "--tsProbeLocations", tsserverPath }
+  local ngserver = vim.fn.stdpath('data') .. '/lsp_servers/angularls/node_modules/.bin/ngserver'
+  local nglsPath = vim.fn.stdpath('data') .. '/lsp_servers/angularls/node_modules'
+  local tsserverPath = vim.fn.stdpath('data') .. '/lsp_servers/tsserver/node_modules'
+  local angular_cmd = { ngserver, '--stdio', '--ngProbeLocations', nglsPath, '--tsProbeLocations', tsserverPath }
 
   local function on_attach(client, bufnr)
-    require('nwvi.config.lsp.formatting').setup(client, bufnr)
+    require('nwvi.config.lsp.formatting').setup(client, bufnr) -- Decide formatter and format on save
     require('nwvi.config.lsp.keys').setup(client, bufnr)
 
-    if client.name == "typescript" or client.name == "tsserver" then
+    if client.name == 'typescript' or client.name == 'tsserver' then
       require('nwvi.config.lsp.ts-utils').setup(client)
     end
   end
+
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   local default_opts = {
     on_attach = on_attach,
@@ -29,26 +30,25 @@ return function()
   require('nwvi.config.lsp.null-ls').setup(default_opts)
 
   lsp_installer.on_server_ready(function(server)
-
     local server_opts = {
       ['sumneko_lua'] = function()
-        return require("lua-dev").setup {
+        return require('lua-dev').setup({
           lspconfig = default_opts,
-        }
+        })
       end,
 
       ['angularls'] = function()
-        return vim.tbl_deep_extend("force", default_opts, {
+        return vim.tbl_deep_extend('force', default_opts, {
           cmd = angular_cmd,
           on_new_config = function(new_config)
             new_config.cmd = angular_cmd
-          end
+          end,
         })
       end,
 
       ['gopls'] = function()
-        return vim.tbl_deep_extend("force", default_opts, {
-          cmd = {'gopls'},
+        return vim.tbl_deep_extend('force', default_opts, {
+          cmd = { 'gopls' },
           settings = {
             gopls = {
               experimentalPostfixCompletions = true,
@@ -58,9 +58,9 @@ return function()
               },
               staticcheck = true,
             },
-          }
+          },
         })
-      end
+      end,
     }
 
     server:setup(server_opts[server.name] and server_opts[server.name]() or default_opts)
