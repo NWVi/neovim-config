@@ -3,7 +3,6 @@ local formatting = nls.builtins.formatting
 
 local sources = {
   formatting.black,
-  formatting.gofmt,
   formatting.prettierd,
   formatting.rustfmt,
   formatting.stylua,
@@ -14,7 +13,6 @@ local M = {}
 
 M.setup = function(options)
   nls.setup({
-    -- debug = true,
     sources = sources,
 
     on_attach = function(client) -- Format on save
@@ -28,13 +26,6 @@ M.setup = function(options)
       end
     end,
   })
-end
-
-function M.has_formatter(ft)
-  -- local method = require('null-ls').methods.FORMATTING
-  if sources then
-    return true
-  end
 end
 
 return M

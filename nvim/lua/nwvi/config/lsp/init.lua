@@ -12,10 +12,11 @@ return function()
   local angular_cmd = { ngserver, '--stdio', '--ngProbeLocations', nglsPath, '--tsProbeLocations', tsserverPath }
 
   local function on_attach(client, bufnr)
-    require('nwvi.config.lsp.formatting').setup(client, bufnr) -- Decide formatter and format on save
     require('nwvi.config.lsp.keys').setup(client, bufnr)
 
     if client.name == 'typescript' or client.name == 'tsserver' then
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
       require('nwvi.config.lsp.ts-utils').setup(client)
     end
   end
