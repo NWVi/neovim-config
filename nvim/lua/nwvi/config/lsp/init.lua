@@ -13,6 +13,9 @@ return function()
       client.resolved_capabilities.document_formatting = false
       client.resolved_capabilities.document_range_formatting = false
       require('nwvi.config.lsp.ts-utils').setup(client)
+    elseif client.name == 'cs' or client.name == 'omnisharp' then
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
     end
   end
 

@@ -176,6 +176,13 @@ return require('packer').startup(function()
   })
 
   use({
+    'windwp/nvim-autopairs',
+    confit = function()
+      require('nvim-autopairs').setup({})
+    end,
+  })
+
+  use({
     'folke/which-key.nvim',
     config = conf('keys'),
   })
