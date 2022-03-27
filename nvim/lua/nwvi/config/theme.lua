@@ -18,7 +18,7 @@ return function()
       nvim_tree = true,
     },
     styles = {
-      comments = 'italic',
+      -- comments = 'italic',
       keywords = 'bold',
     },
     options = {

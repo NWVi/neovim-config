@@ -22,5 +22,5 @@ return function()
   -- References of the word under the cursor from the builtin LSP client
   map('n', 'gr', '<cmd>TroubleToggle lsp_references<CR>')
   -- Definitions of the word under the cursor from the builtin LSP client
-  map('n', 'gd', '<cmd>TroubleToggle lsp_definitions<CR>')
+  -- map('n', 'gd', '<cmd>TroubleToggle lsp_definitions<CR>') -- not working
 end
