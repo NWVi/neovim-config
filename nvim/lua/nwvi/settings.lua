@@ -29,3 +29,4 @@ vim.opt.listchars = {
 vim.opt.guifont = 'FiraCode NF:h12'
 
 vim.cmd([[autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4]])
+vim.cmd([[autocmd FileType cs setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4]])

@@ -12,9 +12,9 @@ return function()
   -- keybinds --
   map('n', '<leader>xx', '<cmd>TroubleToggle<CR>')
   -- workspace diagnostics from builtin LSP client
-  map('n', '<leader>xw', '<cmd>TroubleToggle lsp_workspace_diagnostics<CR>')
+  map('n', '<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<CR>')
   -- Document diagnostics from builtin LSP client
-  map('n', '<leader>xd', '<cmd>TroubleToggle lsp_document_diagnostics<CR>')
+  map('n', '<leader>xd', '<cmd>TroubleToggle document_diagnostic<CR>')
   -- Quickfix items
   map('n', '<leader>xq', '<cmd>TroubleToggle quickfix<CR>')
   -- Items from the window's location list
