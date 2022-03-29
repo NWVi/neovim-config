@@ -13,7 +13,7 @@ function M.setup(client, bufnr)
   lua_buf_map('n', '<space>lwl', 'print(vim.inspect(vim.lsp.buf.list_workspace_folders()))')
   lua_buf_map('n', '<leader>lD', 'vim.lsp.buf.type_definition()')
   lua_buf_map('n', '<leader>lr', 'vim.lsp.buf.rename()')
-  lua_buf_map('n', '<leader>la', 'vim.lsp.buf.code_action()')
+  lua_buf_map('n', '<A-CR>', 'vim.lsp.buf.code_action()')
   -- lua_buf_map('n', 'gr', 'vim.lsp.buf.references()') -- Handled by trouble.nvim
   lua_buf_map('n', '<leader>le', 'vim.lsp.diagnostic.show_line_diagnostics()')
   lua_buf_map('n', '[d', 'vim.lsp.diagnostic.goto_prev()')
