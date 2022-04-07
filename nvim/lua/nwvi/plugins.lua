@@ -185,7 +185,10 @@ return require('packer').startup(function()
   use({
     'nvim-neorg/neorg',
     config = conf('neorg'),
-    requires = 'nvim-lua/plenary.nvim',
+    requires = {
+      'nvim-neorg/neorg-telescope', -- Be sure to pull in the repo
+      'nvim-lua/plenary.nvim',
+    },
   })
 
   use({

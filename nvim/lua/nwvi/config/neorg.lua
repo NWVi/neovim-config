@@ -20,10 +20,16 @@ return function()
           engine = 'nvim-cmp',
         },
       },
+      ['core.integrations.telescope'] = {}, -- Enable the telescope module
       ['core.keybinds'] = {
         config = { -- Note that this table is optional and doesn't need to be provided
           -- Configuration here
           default_bindings = true,
+          hook = function(keybinds)
+            -- Unmaps any Neorg key from the `norg` mode
+            keybinds.unmap('norg', 'n', '<M-k>')
+            keybinds.unmap('norg', 'n', '<M-j>')
+          end,
         },
       },
       ['core.norg.concealer'] = {
