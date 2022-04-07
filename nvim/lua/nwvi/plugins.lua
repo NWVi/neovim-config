@@ -122,9 +122,7 @@ return require('packer').startup(function()
   use({ -- Highlighting TODO comments
     'folke/todo-comments.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('todo-comments').setup()
-    end,
+    config = conf('todo'),
   })
 
   use({ -- Autocompletion plugin
