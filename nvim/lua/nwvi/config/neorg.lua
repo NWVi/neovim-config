@@ -10,8 +10,8 @@ return function()
       ['core.norg.dirman'] = {
         config = {
           workspaces = {
-            work = '~/notes/work',
-            home = '~/notes/home',
+            work = '~/Documents/neorg/work',
+            home = '~/Documents/neorg/home',
           },
         },
       },
