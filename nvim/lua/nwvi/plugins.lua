@@ -56,6 +56,39 @@ return require('packer').startup(function()
     config = conf('theme'),
   })
 
+  use({
+    'rebelot/kanagawa.nvim',
+    config = function()
+      require('kanagawa').setup({
+        undercurl = true, -- enable undercurls
+        commentStyle = 'italic',
+        functionStyle = 'NONE',
+        keywordStyle = 'italic',
+        statementStyle = 'bold',
+        typeStyle = 'NONE',
+        variablebuiltinStyle = 'italic',
+        specialReturn = true, -- special highlight for the return keyword
+        specialException = true, -- special highlight for exception handling keywords
+        transparent = false, -- do not set background color
+        dimInactive = true, -- dim inactive window `:h hl-NormalNC`
+        globalStatus = true, -- adjust window separators highlight for laststatus=3
+        colors = {},
+        overrides = {},
+      })
+
+      vim.cmd('colorscheme kanagawa')
+    end,
+  })
+
+  use('ellisonleao/gruvbox.nvim')
+
+  use('projekt0n/github-nvim-theme')
+
+  use({
+    'catppuccin/nvim',
+    as = 'catppuccin',
+  })
+
   use({ -- Embed in web browsers
     'glacambre/firenvim',
     run = function()
@@ -154,8 +187,6 @@ return require('packer').startup(function()
     },
     config = conf('lsp'),
   })
-
-  use('projekt0n/github-nvim-theme')
 
   use({
     'folke/trouble.nvim',

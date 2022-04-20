@@ -32,6 +32,11 @@ return function()
           end,
         },
       },
+      ['core.presenter'] = {
+        config = { -- Note that this table is optional and doesn't need to be provided
+          zen_mode = 'zen-mode',
+        },
+      },
       ['core.norg.concealer'] = {
         config = {
           preset = 'basic',

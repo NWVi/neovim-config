@@ -26,6 +26,17 @@ vim.opt.listchars = {
   nbsp = '_',
 }
 
+vim.opt.laststatus = 3
+vim.opt.fillchars:append({
+  horiz = '━',
+  horizup = '┻',
+  horizdown = '┳',
+  vert = '┃',
+  vertleft = '┨',
+  vertright = '┣',
+  verthoriz = '╋',
+})
+
 vim.opt.guifont = 'FiraCode NF:h12'
 
 vim.cmd([[autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4]])

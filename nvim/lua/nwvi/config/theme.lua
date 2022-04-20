@@ -45,5 +45,6 @@ return function()
       BufferTabpageFill = { fg = base4, bg = base1 },
     },
   })
-  require('onedarkpro').load()
+
+  -- require('onedarkpro').load()
 end
