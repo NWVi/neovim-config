@@ -1,18 +1,15 @@
 return function()
   local map = require('nwvi.util.helpers').keymap.map
-  local tz = safe_require('true-zen')
-  if not tz then
+  local zen = safe_require('zen-mode')
+  if not zen then
     return
   end
 
-  tz.setup({
-    integrations = {
-      tmux = true,
-      gitsigns = true,
-      lualine = true,
+  zen.setup({
+    window = {
+      backdrop = 1,
     },
   })
 
-  map('n', '<leader>zf', ':TZFocus<CR>')
-  map('n', '<leader>za', ':TZAtaraxis<CR>')
+  map('n', '<leader>zf', ':ZenMode<CR>')
 end

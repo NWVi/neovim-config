@@ -76,6 +76,7 @@ return require('packer').startup(function()
       require('lualine').setup({
         options = {
           theme = 'auto',
+          globalstatus = true,
         },
       })
     end,
@@ -170,8 +171,14 @@ return require('packer').startup(function()
 
   use('mattn/emmet-vim')
 
+  -- use({
+  --   'Pocco81/TrueZen.nvim',
+  --   config = conf('zen'),
+  -- })
+
+  -- Lua
   use({
-    'Pocco81/TrueZen.nvim',
+    'folke/zen-mode.nvim',
     config = conf('zen'),
   })
 
