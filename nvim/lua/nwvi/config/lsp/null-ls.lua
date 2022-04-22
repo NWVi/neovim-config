@@ -6,7 +6,9 @@ local sources = {
   formatting.prettierd,
   formatting.rustfmt,
   formatting.stylua,
-  formatting.trim_whitespace,
+  formatting.trim_whitespace.with({
+    disabled_filetypes = { 'rust', 'cs' },
+  }),
 }
 
 local M = {}

@@ -89,13 +89,6 @@ return require('packer').startup(function()
     as = 'catppuccin',
   })
 
-  use({ -- Embed in web browsers
-    'glacambre/firenvim',
-    run = function()
-      vim.fn['firenvim#install'](0)
-    end,
-  })
-
   use({ -- Bufferline
     'romgrk/barbar.nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
@@ -201,11 +194,6 @@ return require('packer').startup(function()
   use('machakann/vim-sandwich') -- Surround
 
   use('mattn/emmet-vim')
-
-  -- use({
-  --   'Pocco81/TrueZen.nvim',
-  --   config = conf('zen'),
-  -- })
 
   -- Lua
   use({
