@@ -67,7 +67,11 @@ return require('packer').startup(function()
         dimInactive = true, -- dim inactive window `:h hl-NormalNC`
         globalStatus = true, -- adjust window separators highlight for laststatus=3
         colors = {},
-        overrides = {},
+        overrides = {
+          IndentBlanklineChar = { style = 'nocombine' },
+          IndentBlanklineSpaceChar = { style = 'nocombine' },
+          IndentBlanklineSpaceCharBlankline = { style = 'nocombine' },
+        },
       })
 
       vim.cmd('colorscheme kanagawa')
@@ -100,12 +104,6 @@ return require('packer').startup(function()
         },
       })
     end,
-  })
-
-  use({ -- Git symbols in symbolline
-    'lewis6991/gitsigns.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = conf('gitsigns'),
   })
 
   use({ -- File explorer
@@ -188,13 +186,26 @@ return require('packer').startup(function()
     config = conf('trouble'),
   })
 
+  use({ -- Git symbols in symbolline
+    'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = conf('gitsigns'),
+  })
+
+  use({
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('neogit').setup({})
+    end,
+  })
+
   use('sindrets/diffview.nvim')
 
   use('machakann/vim-sandwich') -- Surround
 
   use('mattn/emmet-vim')
 
-  -- Lua
   use({
     'folke/zen-mode.nvim',
     config = conf('zen'),
