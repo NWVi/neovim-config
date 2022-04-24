@@ -15,9 +15,7 @@ return require('packer').startup(function()
 
   use({
     'lukas-reineke/indent-blankline.nvim', -- Indentation guides
-    config = function()
-      require('nwvi.config.blankline')
-    end,
+    config = conf('blankline'),
   })
 
   -- Navigation
@@ -25,9 +23,7 @@ return require('packer').startup(function()
     'knubie/vim-kitty-navigator', -- Easy navigating between tmux and vim buffers
     run = 'cp ./*.py ~/.config/kitty/',
     opt = true,
-    config = function()
-      require('nwvi.config.navigate')
-    end,
+    config = conf('navigate'),
     cond = function()
       return vim.env.KITTY_PID ~= nil
     end,
@@ -36,9 +32,7 @@ return require('packer').startup(function()
   use({
     'christoomey/vim-tmux-navigator', -- Easy navigating between tmux and vim buffers
     opt = true,
-    config = function()
-      require('nwvi.config.navigate')
-    end,
+    config = conf('navigate'),
     cond = function()
       return vim.env.KITTY_PID == nil
     end,
@@ -129,9 +123,7 @@ return require('packer').startup(function()
       'p00f/nvim-ts-rainbow',
       'windwp/nvim-ts-autotag',
     },
-    config = function()
-      require('nwvi.config.treesitter')
-    end,
+    config = conf('treesitter'),
   })
 
   use({ -- Commenting

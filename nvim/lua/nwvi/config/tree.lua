@@ -11,7 +11,7 @@ return function()
 
   nvim_tree.setup({
     filters = {
-      doftiles = false,
+      dotfiles = false,
       custom = { '.git' }, -- Hide these files
     },
     git = {
