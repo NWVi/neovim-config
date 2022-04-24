@@ -168,9 +168,16 @@ return require('packer').startup(function()
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       'jose-elias-alvarez/null-ls.nvim',
       'williamboman/nvim-lsp-installer', -- simple to use language server installer
+      'simrat39/rust-tools.nvim',
       'folke/lua-dev.nvim',
+      'mfussenegger/nvim-dap', -- debugger
     },
     config = conf('lsp'),
+  })
+
+  use({
+    'ray-x/lsp_signature.nvim',
+    config = conf('lsp/lsp-signature'),
   })
 
   use({
