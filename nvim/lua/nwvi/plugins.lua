@@ -226,6 +226,11 @@ return require('packer').startup(function()
   })
 
   use({
+    'akinsho/toggleterm.nvim',
+    config = conf('toggleterm'),
+  })
+
+  use({
     'folke/which-key.nvim',
     config = conf('keys'),
   })
