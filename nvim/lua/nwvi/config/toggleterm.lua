@@ -9,6 +9,7 @@ return function()
       end
     end,
     open_mapping = [[<leader>tt]],
+    insert_mappings = false,
   })
 
   function _G.set_terminal_keymaps()
