@@ -1,5 +1,8 @@
 return function()
   require('indent_blankline').setup({
+    use_treesitter = true,
+    show_current_context = true,
+    buftype_exclude = { 'terminal' },
     filetype_exclude = {
       'help',
       'man',
@@ -8,12 +11,10 @@ return function()
       'packer',
       'TelescopePrompt',
       'TelescopeResults',
+      'trouble',
+      'starter',
       '',
     },
-    use_treesitter = true,
-    show_current_context = true,
-    buftype_exclude = { 'terminal' },
-    filetype_exclude = { 'trouble', 'starter' },
   })
 
   -- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
