@@ -76,18 +76,6 @@ return require('packer').startup(function()
           BufferCurrentMod = { bg = '#363646', fg = '#FF9E3B' },
           BufferCurrentSign = { bg = '#363646' },
           BufferCurrentTarget = { bg = '#363646' },
-          -- BufferVisible                  = {},
-          -- BufferVisibleIndex             = {},
-          -- BufferVisibleMod               = {},
-          -- BufferVisibleSign              = {},
-          -- BufferVisibleTarget            = {},
-          -- BufferInactive                 = {},
-          -- BufferInactiveIndex            = {},
-          -- BufferInactiveMod              = {},
-          -- BufferInactiveSign             = {},
-          -- BufferInactiveTarget           = {},
-          -- BufferTabpages                 = {},
-          -- BufferTabpage                  = {},
           BufferTabpageFill = { bg = '#16161d' },
         },
       })
@@ -134,6 +122,7 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     requires = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
       'p00f/nvim-ts-rainbow',
@@ -142,16 +131,11 @@ return require('packer').startup(function()
     config = conf('treesitter'),
   })
 
-  use({ -- Commenting
-    'numToStr/Comment.nvim',
-    requires = { 'JoosepAlviste/nvim-ts-context-commentstring' },
-    config = function()
-      require('Comment').setup({
-        pre_hook = function(ctx)
-          return require('ts_context_commentstring.internal').calculate_commentstring()
-        end,
-      })
-    end,
+  use({
+    'echasnovski/mini.nvim',
+    branch = 'stable',
+    after = 'nvim-treesitter',
+    config = conf('mini'),
   })
 
   use({ -- Highlighting TODO comments
@@ -219,8 +203,6 @@ return require('packer').startup(function()
   })
 
   use('sindrets/diffview.nvim')
-
-  use('machakann/vim-sandwich') -- Surround
 
   use('mattn/emmet-vim')
 

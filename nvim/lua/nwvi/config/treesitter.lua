@@ -28,6 +28,10 @@ return function()
       'vue',
       'yaml',
     },
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+    },
     highlight = {
       enable = true,
       additiona_vim_regex_highlighting = false,

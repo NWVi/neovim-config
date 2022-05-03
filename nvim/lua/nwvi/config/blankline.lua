@@ -13,6 +13,7 @@ return function()
     use_treesitter = true,
     show_current_context = true,
     buftype_exclude = { 'terminal' },
+    filetype_exclude = { 'trouble', 'starter' },
   })
 
   -- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
