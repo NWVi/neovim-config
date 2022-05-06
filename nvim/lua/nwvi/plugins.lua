@@ -15,7 +15,7 @@ return require('packer').startup(function()
 
   use({
     'lukas-reineke/indent-blankline.nvim', -- Indentation guides
-    config = conf('blankline'),
+    config = conf('indentline'),
   })
 
   -- Navigation

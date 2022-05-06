@@ -13,6 +13,7 @@ return function()
       'TelescopeResults',
       'trouble',
       'starter',
+      'norg',
       '',
     },
   })
