@@ -150,7 +150,7 @@ return require('packer').startup(function()
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer', -- buffer completions
       'hrsh7th/cmp-path', -- path completions
-      'hrsh7th/cmp-cmdline', -- cmdline completions
+      -- 'hrsh7th/cmp-cmdline', -- cmdline completions
       'saadparwaiz1/cmp_luasnip', -- snippet completions
       {
         'L3MON4D3/LuaSnip', -- Snippets plugin
@@ -165,6 +165,7 @@ return require('packer').startup(function()
     'neovim/nvim-lspconfig',
     after = 'nvim-cmp',
     requires = {
+      'ray-x/lsp_signature.nvim',
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       'jose-elias-alvarez/null-ls.nvim',
       'williamboman/nvim-lsp-installer', -- simple to use language server installer
@@ -173,11 +174,6 @@ return require('packer').startup(function()
       'mfussenegger/nvim-dap', -- debugger
     },
     config = conf('lsp'),
-  })
-
-  use({
-    'ray-x/lsp_signature.nvim',
-    config = conf('lsp/lsp-signature'),
   })
 
   use({

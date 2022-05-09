@@ -1,5 +1,11 @@
-local nls = require('null-ls')
+local nls_status_ok, nls = pcall(require, 'null-ls')
+if not nls_status_ok then
+  return
+end
+
 local formatting = nls.builtins.formatting
+
+-- local diagnostics = nls.builtins.diagnostics
 
 local sources = {
   formatting.black,
@@ -10,23 +16,7 @@ local sources = {
   }),
 }
 
-local M = {}
-
-M.setup = function(options)
-  nls.setup({
-    sources = sources,
-
-    on_attach = function(client) -- Format on save
-      if client.resolved_capabilities.document_formatting then
-        vim.cmd([[
-          augroup LspFormatting
-              autocmd! * <buffer>
-              autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-          augroup END
-          ]])
-      end
-    end,
-  })
-end
-
-return M
+nls.setup({
+  debug = false,
+  sources = sources,
+})

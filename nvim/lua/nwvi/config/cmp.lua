@@ -44,6 +44,7 @@ return function()
     sources = {
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
+      { name = 'path' },
     },
   })
 
@@ -59,7 +60,6 @@ return function()
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-      { name = 'cmdline' },
       { name = 'path' },
     },
   })
