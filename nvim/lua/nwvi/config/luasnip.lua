@@ -2,28 +2,13 @@ return function()
   local ls = require('luasnip')
 
   ls.config.set_config({
-    history = false,
+    history = true,
     -- Update more often, :h events for more info.
     updateevents = 'TextChanged,TextChangedI',
+    delete_check_events = 'TextChanged',
   })
 
-  -- Snippet creator
-  -- s(<trigger>, <nodes>)
-  local s = ls.s
-
-  -- Format node
-  -- Takes a format string, and a lsit of nodes
-  -- fmt(<fmt_string>, {...nodes})
-  local fmt = require('luasnip.extras.fmt').fmt
-
-  -- Insert node
-  -- Takes a position (like $1) and optionally some default text
-  -- i(<position>, [default text])
-  local i = ls.insert_node
-
-  -- Repeat a node
-  -- rep(<position>)
-  local rep = require('luasnip.extras').rep
+  require('luasnip/loaders/from_vscode').lazy_load()
 
   require('luasnip.loaders.from_lua').lazy_load()
 

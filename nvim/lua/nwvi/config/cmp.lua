@@ -11,8 +11,6 @@ return function()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
   end
 
-  require('luasnip/loaders/from_vscode').lazy_load()
-
   cmp.setup({
     snippet = {
       expand = function(args)
@@ -73,9 +71,9 @@ return function()
     },
     window = {
       documentation = {
-        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-      }
-    }
+        border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+      },
+    },
   })
 
   -- Use buffer source for `/`
