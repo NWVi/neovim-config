@@ -155,8 +155,9 @@ return require('packer').startup(function()
       {
         'L3MON4D3/LuaSnip', -- Snippets plugin
         wants = 'friendly-snippets',
+        config = conf('luasnip')
       },
-      use('rafamadriz/friendly-snippets'), -- a bunch of snippets to
+      'rafamadriz/friendly-snippets', -- a bunch of snippets
     },
     config = conf('cmp'),
   })
