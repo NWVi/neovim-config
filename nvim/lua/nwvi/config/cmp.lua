@@ -2,7 +2,8 @@
 return function()
   local cmp = safe_require('cmp')
   local luasnip = safe_require('luasnip')
-  if not cmp and luasnip then
+  local neogen = safe_require('neogen')
+  if not cmp and not luasnip and not neogen then
     return
   end
 
@@ -38,6 +39,8 @@ return function()
           luasnip.expand()
         elseif luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
+        elseif neogen.jumpable() then
+          neogen.jump_next()
         elseif check_backspace() then
           fallback()
         else
@@ -52,6 +55,8 @@ return function()
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
           luasnip.jump(-1)
+        elseif neogen.jumpable(true) then
+          neogen.jump_prev()
         else
           fallback()
         end

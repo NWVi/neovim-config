@@ -155,7 +155,23 @@ return require('packer').startup(function()
       {
         'L3MON4D3/LuaSnip', -- Snippets plugin
         wants = 'friendly-snippets',
-        config = conf('luasnip')
+        config = conf('luasnip'),
+      },
+      {
+        'danymat/neogen',
+        config = function()
+          require('neogen').setup({
+            enabled = true,
+            languages = {
+              cs = {
+                template = {
+                  annotation_convention = 'xmldoc',
+                },
+              },
+            },
+          })
+        end,
+        requires = 'nvim-treesitter/nvim-treesitter',
       },
       'rafamadriz/friendly-snippets', -- a bunch of snippets
     },
@@ -193,13 +209,18 @@ return require('packer').startup(function()
 
   use({
     'TimUntersberger/neogit',
-    requires = 'nvim-lua/plenary.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+    },
     config = function()
-      require('neogit').setup({})
+      require('neogit').setup({
+        integrations = {
+          diffview = true,
+        },
+      })
     end,
   })
-
-  use('sindrets/diffview.nvim')
 
   use('mattn/emmet-vim')
 
@@ -225,6 +246,15 @@ return require('packer').startup(function()
   use({
     'akinsho/toggleterm.nvim',
     config = conf('toggleterm'),
+  })
+
+  use({
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && npm install',
+    setup = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
   })
 
   use({
