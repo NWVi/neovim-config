@@ -9,8 +9,24 @@ return require('packer').startup(function()
   -- UI to select things (files, grep results, open buffers, etc...)
   use({
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+    requires = {
+      'nvim-lua/plenary.nvim',
+      use({
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+      }),
+    },
     config = conf('telescope'),
+  })
+
+  use({ -- Dumb indentation detection
+    'Darazaki/indent-o-matic',
+    config = function()
+      return require('indent-o-matic').setup({
+        -- Space indentations that should be detected
+        standard_widths = { 2, 4, 8 },
+      })
+    end,
   })
 
   use({
@@ -41,56 +57,23 @@ return require('packer').startup(function()
   use({
     'norcalli/nvim-colorizer.lua', -- Color highlighter
     config = function()
-      require('colorizer').setup() -- enable color higlighting
+      require('colorizer').setup({ '*' }, {
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
+        names = false, -- "Name" codes like Blue
+        RRGGBBAA = false, -- #RRGGBBAA hex codes
+        rgb_fn = false, -- CSS rgb() and rgba() functions
+        hsl_fn = false, -- CSS hsl() and hsla() functions
+        css = false, -- Enable all css features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        mode = 'background', -- Set the display mode
+      }) -- enable color higlighting
     end,
-  })
-
-  use({ -- colorscheme
-    'olimorris/onedarkpro.nvim',
-    config = conf('theme'),
   })
 
   use({
     'rebelot/kanagawa.nvim',
-    config = function()
-      require('kanagawa').setup({
-        undercurl = true, -- enable undercurls
-        commentStyle = 'italic',
-        functionStyle = 'NONE',
-        keywordStyle = 'italic',
-        statementStyle = 'bold',
-        typeStyle = 'NONE',
-        variablebuiltinStyle = 'italic',
-        specialReturn = true, -- special highlight for the return keyword
-        specialException = true, -- special highlight for exception handling keywords
-        transparent = false, -- do not set background color
-        dimInactive = true, -- dim inactive window `:h hl-NormalNC`
-        globalStatus = true, -- adjust window separators highlight for laststatus=3
-        colors = {},
-        overrides = {
-          IndentBlanklineChar = { style = 'nocombine' },
-          IndentBlanklineSpaceChar = { style = 'nocombine' },
-          IndentBlanklineSpaceCharBlankline = { style = 'nocombine' },
-          BufferCurrent = { bg = '#363646' },
-          BufferCurrentIndex = { bg = '#363646' },
-          BufferCurrentMod = { bg = '#363646', fg = '#FF9E3B' },
-          BufferCurrentSign = { bg = '#363646' },
-          BufferCurrentTarget = { bg = '#363646' },
-          BufferTabpageFill = { bg = '#16161d' },
-        },
-      })
-
-      vim.cmd('colorscheme kanagawa')
-    end,
-  })
-
-  use('ellisonleao/gruvbox.nvim')
-
-  use('projekt0n/github-nvim-theme')
-
-  use({
-    'catppuccin/nvim',
-    as = 'catppuccin',
+    config = conf('theme'),
   })
 
   use({ -- Bufferline
@@ -138,27 +121,21 @@ return require('packer').startup(function()
     config = conf('mini'),
   })
 
-  use({ -- Highlighting TODO comments
-    'folke/todo-comments.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = conf('todo'),
-  })
-
   use({ -- Autocompletion plugin
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer', -- buffer completions
       'hrsh7th/cmp-path', -- path completions
-      -- 'hrsh7th/cmp-cmdline', -- cmdline completions
       'saadparwaiz1/cmp_luasnip', -- snippet completions
       {
         'L3MON4D3/LuaSnip', -- Snippets plugin
-        wants = 'friendly-snippets',
+        requires = 'rafamadriz/friendly-snippets', -- a bunch of snippets
         config = conf('luasnip'),
       },
       {
         'danymat/neogen',
+        requires = 'nvim-treesitter/nvim-treesitter',
         config = function()
           require('neogen').setup({
             enabled = true,
@@ -171,9 +148,7 @@ return require('packer').startup(function()
             },
           })
         end,
-        requires = 'nvim-treesitter/nvim-treesitter',
       },
-      'rafamadriz/friendly-snippets', -- a bunch of snippets
     },
     config = conf('cmp'),
   })
@@ -186,8 +161,8 @@ return require('packer').startup(function()
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       'jose-elias-alvarez/null-ls.nvim',
       'williamboman/nvim-lsp-installer', -- simple to use language server installer
-      'simrat39/rust-tools.nvim',
-      'folke/lua-dev.nvim',
+      use({ 'simrat39/rust-tools.nvim', ft = { 'rust' } }),
+      use({ 'folke/lua-dev.nvim', ft = { 'lua' } }),
       'mfussenegger/nvim-dap', -- debugger
     },
     config = conf('lsp'),
@@ -196,9 +171,16 @@ return require('packer').startup(function()
   use({
     'folke/trouble.nvim',
     event = 'BufReadPre',
-    wants = 'nvim-web-devicons',
+    requires = 'nvim-web-devicons',
     cmd = { 'TroubleToggle', 'Trouble' },
     config = conf('trouble'),
+  })
+
+  use({ -- Highlighting TODO comments
+    'folke/todo-comments.nvim',
+    requires = { 'nvim-lua/plenary.nvim', 'folke/trouble.nvim' },
+    cmd = { 'TodoTrouble', 'TodoQuickFix', 'TodoTelescope', 'TodoLocList' },
+    config = conf('todo'),
   })
 
   use({ -- Git symbols in symbolline
@@ -213,6 +195,8 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim',
       'sindrets/diffview.nvim',
     },
+    opt = true,
+    cmd = { 'Neogit' },
     config = function()
       require('neogit').setup({
         integrations = {
@@ -227,6 +211,7 @@ return require('packer').startup(function()
   use({
     'folke/zen-mode.nvim',
     config = conf('zen'),
+    cmd = { 'ZenMode' },
   })
 
   use({
@@ -236,15 +221,17 @@ return require('packer').startup(function()
 
   use({
     'nvim-neorg/neorg',
-    config = conf('neorg'),
     requires = {
       'nvim-neorg/neorg-telescope', -- Be sure to pull in the repo
       'nvim-lua/plenary.nvim',
     },
+    cmd = { 'NeorgStart' },
+    config = conf('neorg'),
   })
 
   use({
     'akinsho/toggleterm.nvim',
+    cmd = { 'ToggleTerm', 'ToggleTermToggleAll', '2ToggleTerm' },
     config = conf('toggleterm'),
   })
 
@@ -255,6 +242,21 @@ return require('packer').startup(function()
       vim.g.mkdp_filetypes = { 'markdown' }
     end,
     ft = { 'markdown' },
+  })
+
+  use({ -- Code outline window (similar to gutentag)
+    'stevearc/aerial.nvim',
+    cmd = { 'AerialToggle' },
+    config = conf('aerial'),
+  })
+
+  use({ -- smooth scrolling
+    'declancm/cinnamon.nvim',
+    config = function()
+      require('cinnamon').setup({
+        default_delay = 1,
+      })
+    end,
   })
 
   use({

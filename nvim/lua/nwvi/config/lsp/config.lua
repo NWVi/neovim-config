@@ -11,6 +11,15 @@ lsp_installer.setup({
   ensure_installed = servers,
 })
 
+local win = require('lspconfig.ui.windows')
+local _default_opts = win.default_opts
+
+win.default_opts = function(options)
+  local opts = _default_opts(options)
+  opts.border = 'rounded'
+  return opts
+end
+
 for _, server in pairs(servers) do
   local opts = {
     on_attach = require('nwvi.config.lsp.handlers').on_attach,

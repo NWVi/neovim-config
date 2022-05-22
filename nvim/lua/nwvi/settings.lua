@@ -9,6 +9,7 @@ vim.opt.breakindent = true -- Enable break indent
 vim.opt.smartindent = true -- Smart autoindenting on new line
 
 vim.opt.number = true -- show numbers
+vim.opt.relativenumber = true
 vim.opt.ignorecase = true -- Case insensitive
 vim.opt.smartcase = true -- Case insensitive unless /C or capital in search
 vim.opt.updatetime = 250 -- milliseconds from typing to saving swap file
@@ -43,3 +44,9 @@ vim.cmd([[autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 ta
 vim.cmd([[autocmd FileType cs setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4]])
 
 vim.cmd([[autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s]])
+
+-- Close windows with 'q'
+vim.api.nvim_create_autocmd(
+  'FileType',
+  { pattern = { 'help', 'startuptime', 'lspinfo' }, command = [[nnoremap <buffer><silent> q :close<CR>]] }
+)

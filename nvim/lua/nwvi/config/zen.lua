@@ -10,6 +10,4 @@ return function()
       backdrop = 1,
     },
   })
-
-  map('n', '<leader>zf', ':ZenMode<CR>')
 end

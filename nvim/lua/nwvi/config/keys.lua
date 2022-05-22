@@ -6,6 +6,37 @@ return function()
 
   vim.o.timeoutlen = 500
 
+  local leader_opts = {
+    mode = 'n',
+    prefix = '<leader>',
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  }
+
+  local leader_mappings = {
+    g = {
+      name = 'Git',
+      s = { '<Cmd>Neogit<CR>', 'Status' },
+    },
+    x = {
+      name = 'Trouble',
+      x = { '<Cmd>TroubleToggle<CR>', 'Toggle Trouble' },
+      w = { '<Cmd>TroubleToggle workspace_diagnostics<CR>', 'Workspace diagnostics' },
+      d = { '<Cmd>TroubleToggle document_diagnostics<CR>', 'Document diagnostics' },
+      q = { '<Cmd>TroubleToggle quickfix<CR>', 'Quickfix' },
+      l = { '<Cmd>TroubleToggle loclist<CR>', 'Loclist' },
+      t = { '<Cmd>TodoTrouble<CR>', 'Todos' },
+    },
+    t = {
+      t = { '<Cmd>ToggleTerm<CR>', 'Terminal' },
+      a = { '<Cmd>ToggleTermToggleAll<CR>', 'All terminals' },
+      s = { '<Cmd>2ToggleTerm<CR>', 'Terminal split' },
+    },
+    z = { '<Cmd>ZenMode<CR>', 'Zen Mode' },
+  }
+
   wk.setup({
     plugins = {
       marks = true, -- shows a list of your marks on ' and `
@@ -44,7 +75,7 @@ return function()
       scroll_up = '<c-u>', -- binding to scroll up inside the popup
     },
     window = {
-      border = 'none', -- none, single, double, shadow
+      border = 'rounded', -- none, single, double, shadow
       position = 'bottom', -- bottom, top
       margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
       padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
@@ -69,4 +100,6 @@ return function()
       v = { 'j', 'k' },
     },
   })
+
+  wk.register(leader_mappings, leader_opts)
 end
