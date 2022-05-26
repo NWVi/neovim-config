@@ -5,7 +5,7 @@ end
 
 local lspconfig = require('lspconfig')
 
-local servers = { 'jsonls', 'omnisharp', 'gopls', 'angularls', 'tsserver', 'sumneko_lua' }
+local servers = { 'jsonls', 'omnisharp', 'gopls', 'angularls', 'tsserver', 'sumneko_lua', 'rust_analyzer' }
 
 lsp_installer.setup({
   ensure_installed = servers,
@@ -29,11 +29,19 @@ for _, server in pairs(servers) do
   if has_custom_opts then
     opts = vim.tbl_deep_extend('force', server_custom_opts, opts)
   end
-  lspconfig[server].setup(opts)
-end
 
-local rust_ok, rust = pcall(require, 'rust-tools')
-if not rust_ok then
-  return
+  if server == 'rust_analyzer' then
+    local rt_ok, rust_tools = pcall(require, 'rust-tools')
+    if not rt_ok then
+      print('Failed to load rust-tools')
+    else
+      local rust_opts = {
+        server = opts,
+      }
+
+      rust_tools.setup(rust_opts)
+    end
+  else
+    lspconfig[server].setup(opts)
+  end
 end
-rust.setup()

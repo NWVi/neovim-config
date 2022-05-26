@@ -189,14 +189,21 @@ return require('packer').startup(function()
     config = conf('gitsigns'),
   })
 
-  use({
+  use({ -- Git conflics
+    'akinsho/git-conflict.nvim',
+    config = function()
+      require('git-conflict').setup({})
+    end,
+  })
+
+  use({ -- Git and diff
     'TimUntersberger/neogit',
     requires = {
       'nvim-lua/plenary.nvim',
       'sindrets/diffview.nvim',
     },
     opt = true,
-    cmd = { 'Neogit' },
+    cmd = { 'Neogit', 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFileHistory' },
     config = function()
       require('neogit').setup({
         integrations = {
