@@ -34,6 +34,9 @@ return function()
     },
     highlight = {
       enable = true,
+      disabled = function(lang, bufnr) -- Disable in large C++ buffers
+        return vim.api.nvim_buf_line_count(bufnr) > 5000
+      end,
       additiona_vim_regex_highlighting = false,
     },
     rainbow = {
