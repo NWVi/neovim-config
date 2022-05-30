@@ -45,6 +45,8 @@ vim.opt.guifont = 'FiraCode NF:h12'
 -- noselect : don't select, force user to select one from the menu
 vim.opt.completeopt=[[menuone,noinsert,noselect]]
 
+vim.opt.signcolumn =[[yes]] -- keep sign column
+
 vim.cmd([[autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4]])
 vim.cmd([[autocmd FileType cs setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4]])
 vim.cmd([[autocmd FileType rs setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4]])

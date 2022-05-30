@@ -267,6 +267,16 @@ return require('packer').startup(function()
   })
 
   use({
+    'rcarriga/vim-ultest',
+    requires = { 'nwvi/vim-test' },
+    run = ':UpdateRemotePlugins',
+    config = function()
+      vim.g.ultest_pass_sign = '✓'
+      vim.g.ultest_use_pty = 1
+    end,
+  })
+
+  use({
     'folke/which-key.nvim',
     config = conf('keys'),
   })
