@@ -13,7 +13,7 @@ function M.setup(bufnr)
     bufnr,
     'n',
     '<space>lwl',
-    '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))',
+    '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
     opts
   )
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lD', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)

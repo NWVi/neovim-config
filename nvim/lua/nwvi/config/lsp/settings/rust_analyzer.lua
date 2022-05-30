@@ -4,6 +4,9 @@ return {
       cargo = {
         features = 'all',
       },
+      checkOnSave = {
+        command = "clippy"
+      }
     },
   },
 }
