@@ -161,8 +161,8 @@ return require('packer').startup(function()
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       'jose-elias-alvarez/null-ls.nvim',
       'williamboman/nvim-lsp-installer', -- simple to use language server installer
-      use({ 'simrat39/rust-tools.nvim', ft = { 'rust' } }),
-      use({ 'folke/lua-dev.nvim', ft = { 'lua' } }),
+      use({ 'simrat39/rust-tools.nvim' }),
+      use({ 'folke/lua-dev.nvim' }),
       'mfussenegger/nvim-dap', -- debugger
     },
     config = conf('lsp'),
@@ -267,12 +267,28 @@ return require('packer').startup(function()
   })
 
   use({
-    'rcarriga/vim-ultest',
-    requires = { 'nwvi/vim-test' },
-    run = ':UpdateRemotePlugins',
+    'rcarriga/neotest',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'akinsho/neotest-go',
+      'rcarriga/neotest-python',
+      'nwvi/vim-test',
+      'rcarriga/neotest-vim-test',
+    },
     config = function()
-      vim.g.ultest_pass_sign = '✓'
-      vim.g.ultest_use_pty = 1
+      require('neotest').setup({
+        adapters = {
+          require('neotest-python')({
+            dap = { justMyCode = false },
+          }),
+          require('neotest-go'),
+          require('neotest-vim-test')({
+            ignore_file_types = { 'python', 'go' },
+          }),
+        },
+      })
     end,
   })
 
