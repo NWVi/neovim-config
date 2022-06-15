@@ -35,6 +35,7 @@ return function()
       s = { '<Cmd>2ToggleTerm<CR>', 'Terminal split' },
     },
     z = { '<Cmd>ZenMode<CR>', 'Zen Mode' },
+    ['.'] = { '<CMD>lcd %:p:h<CR><CMD>pwd<CR>', 'CD current dir' },
   }
 
   wk.setup({
