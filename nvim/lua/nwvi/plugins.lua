@@ -277,23 +277,23 @@ return require('packer').startup(function()
       'nwvi/vim-test',
       'rcarriga/neotest-vim-test',
     },
-    config = function()
-      require('neotest').setup({
-        adapters = {
-          require('neotest-python')({
-            dap = { justMyCode = false },
-          }),
-          require('neotest-go'),
-          require('neotest-vim-test')({
-            ignore_file_types = { 'python', 'go' },
-          }),
-        },
-      })
-    end,
+    config = conf('neotest'),
   })
 
   use({
     'folke/which-key.nvim',
     config = conf('keys'),
+  })
+
+  use({
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function()
+      require('octo').setup()
+    end,
   })
 end)
