@@ -10,8 +10,11 @@ return function()
   end)
 
   nvim_tree.setup({
+    view = {
+      adaptive_size = true
+    },
     filters = {
-      dotfiles = false,
+      dotfiles = true,
       custom = { '.git' }, -- Hide these files
     },
     git = {

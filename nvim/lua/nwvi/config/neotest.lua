@@ -15,6 +15,12 @@ return function()
         ignore_file_types = { 'python', 'go' },
       }),
     },
+    icons = {
+      passed = "",
+      running = "",
+      failed = "",
+      unknown = "",
+    }
   })
 
   wk.register({
