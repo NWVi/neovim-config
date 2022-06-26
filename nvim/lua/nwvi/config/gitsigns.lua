@@ -1,7 +1,7 @@
 return function()
-  local map = require('nwvi.util.helpers').keymap.map
+  local wk = safe_require('which-key')
   local gitsigns = safe_require('gitsigns')
-  if not gitsigns then
+  if not gitsigns and not wk then
     return
   end
 
@@ -15,9 +15,20 @@ return function()
     },
   })
 
-  map('n', ']g', '&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', { expr = true })
-  map('n', '[g', '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', { expr = true })
-  map('n', '<space>hm', '<cmd>Gitsigns change_base master<CR>') -- Change base to master
-  map('n', '<space>hh', '<cmd>Gitsigns change_base<CR>') -- Change base to original base
-  map('n', '<space>hn', '<cmd>Gitsigns change_base ')
+  wk.register({
+    g = {
+      m = { '<Cmd>GitSigns change_base main<CR>', 'Change base main' },
+      h = { '<Cmd>GitSigns change_base<CR>', 'Change base original' },
+      n = { '<Cmd>GitSigns change_base ', 'Change base ...' },
+    }
+  }, { prefix = '<leader>' })
+
+  wk.register({
+    ["["] = {
+      g = {'&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', 'Jump to prev hunk', expr = true}
+    },
+    ["]"] = {
+      g = {'&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', 'Jump to next hunk', expr = true}
+    }
+  }, { mode = 'n' })
 end

@@ -296,4 +296,10 @@ return require('packer').startup(function()
       require('octo').setup()
     end,
   })
+
+  use({
+    'phaazon/hop.nvim',
+    -- branch = 'v1', -- optional but strongly recommended
+    config = conf('hop'),
+  })
 end)
