@@ -17,18 +17,19 @@ return function()
 
   wk.register({
     g = {
-      m = { '<Cmd>GitSigns change_base main<CR>', 'Change base main' },
-      h = { '<Cmd>GitSigns change_base<CR>', 'Change base original' },
-      n = { '<Cmd>GitSigns change_base ', 'Change base ...' },
-    }
+      m = { '<Cmd>Gitsigns change_base main<CR>', 'Change base main' },
+      h = { '<Cmd>Gitsigns change_base<CR>', 'Change base original' },
+      n = { '<Cmd>Gitsigns change_base ', 'Change base ...' },
+      b = { '<Cmd>Gitsigns blame_line<CR> ', 'Blame line' },
+    },
   }, { prefix = '<leader>' })
 
   wk.register({
-    ["["] = {
-      g = {'&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', 'Jump to prev hunk', expr = true}
+    ['['] = {
+      g = { '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', 'Jump to prev hunk', expr = true },
     },
-    ["]"] = {
-      g = {'&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', 'Jump to next hunk', expr = true}
-    }
+    [']'] = {
+      g = { '&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', 'Jump to next hunk', expr = true },
+    },
   }, { mode = 'n' })
 end
