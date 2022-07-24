@@ -1,4 +1,4 @@
-local status_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+local status_ok, mason = pcall(require, 'mason')
 if not status_ok then
   return
 end
@@ -7,7 +7,9 @@ local lspconfig = require('lspconfig')
 
 local servers = { 'jsonls', 'omnisharp', 'gopls', 'angularls', 'tsserver', 'sumneko_lua', 'rust_analyzer', 'pyright' }
 
-lsp_installer.setup({
+mason.setup({ })
+
+require('mason-lspconfig').setup({
   ensure_installed = servers,
 })
 

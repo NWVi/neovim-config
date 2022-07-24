@@ -15,6 +15,7 @@ return function()
       'Trouble',
       'starter',
       'norg',
+      'mason',
       '',
     },
   })
