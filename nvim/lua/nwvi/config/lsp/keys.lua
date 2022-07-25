@@ -20,7 +20,6 @@ function M.setup(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<A-CR>', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   -- lua_buf_map('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>') -- Handled by trouble.nvim
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>le', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<Cmd>lua vim.lsp.diagnostic.goto_prev({border = "rounded"})<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<Cmd>lua vim.lsp.diagnostic.goto_next({border = "rounded"})<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>lq', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)

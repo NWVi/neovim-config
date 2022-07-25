@@ -162,9 +162,10 @@ return require('packer').startup(function()
       'jose-elias-alvarez/null-ls.nvim',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      use({ 'simrat39/rust-tools.nvim' }),
-      use({ 'folke/lua-dev.nvim' }),
+      'simrat39/rust-tools.nvim',
+      'folke/lua-dev.nvim',
       'mfussenegger/nvim-dap', -- debugger
+      'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     },
     config = conf('lsp'),
   })
