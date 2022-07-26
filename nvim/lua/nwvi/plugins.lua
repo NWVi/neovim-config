@@ -123,6 +123,7 @@ return require('packer').startup(function()
 
   use({ -- Autocompletion plugin
     'hrsh7th/nvim-cmp',
+    config = conf('cmp'),
     requires = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer', -- buffer completions
@@ -149,8 +150,11 @@ return require('packer').startup(function()
           })
         end,
       },
+      {
+        'windwp/nvim-autopairs',
+        config = conf('autopairs'),
+      },
     },
-    config = conf('cmp'),
   })
 
   use({ -- LSP
@@ -221,11 +225,6 @@ return require('packer').startup(function()
     'folke/zen-mode.nvim',
     config = conf('zen'),
     cmd = { 'ZenMode' },
-  })
-
-  use({
-    'windwp/nvim-autopairs',
-    config = conf('autopairs'),
   })
 
   use({
