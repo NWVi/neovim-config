@@ -11,7 +11,7 @@ return function()
 
   nvim_tree.setup({
     view = {
-      adaptive_size = true
+      adaptive_size = true,
     },
     filters = {
       dotfiles = true,
@@ -22,35 +22,5 @@ return function()
     },
   })
 
-  vim.g.nvim_tree_icons = {
-    default = '',
-    symlink = '',
-    git = {
-      unstaged = '✗',
-      staged = '✓',
-      unmerged = '',
-      renamed = '➜',
-      untracked = '*',
-      deleted = '',
-      ignored = '◌',
-    },
-    folder = {
-      arrow_open = '',
-      arrow_closed = '',
-      default = '',
-      open = '',
-      empty = '',
-      empty_open = '',
-      symlink = '',
-      symlink_open = '',
-    },
-    lsp = {
-      hint = '',
-      info = '',
-      warning = '',
-      error = '',
-    },
-  }
-
-  map('n', '<F3>', '<cmd>NvimTreeFindFileToggle<CR>')
+  map('n', '<F3>', '<cmd>NvimTreeFindFile<CR>')
 end

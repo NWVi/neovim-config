@@ -3,14 +3,6 @@ if not lsp_lines_ok then
   return
 end
 
--- From https://github.com/folke/dot/
--- Automatically update diagnostics
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  update_in_insert = false,
-  virtual_text = false, -- Redundant due to lsp_lines
-  severity_sort = true,
-})
-
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
 
 for type, icon in pairs(signs) do
@@ -21,4 +13,12 @@ end
 -- LSP lines things
 lsp_lines.setup()
 
-vim.keymap.set('', '<leader>le', lsp_lines.toggle, { desc = 'Toggle lsp_lines' })
+vim.diagnostic.config({
+  virtual_text = true, -- removes duplication of diagnostic messages due to lsp_lines
+  virtual_lines = false,
+})
+
+vim.keymap.set('n', '<leader>le', function()
+  local virtual_lines_enabled = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = virtual_lines_enabled, virtual_text = not virtual_lines_enabled })
+end, { desc = 'Toggle lsp_lines' })
