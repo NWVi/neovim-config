@@ -6,6 +6,21 @@ end
 return require('packer').startup(function()
   use('wbthomason/packer.nvim') -- Package manager
 
+  use({
+    'folke/which-key.nvim',
+    config = conf('keys'),
+  })
+
+  use({
+    'sunjon/shade.nvim',
+    config = function()
+      require("shade").setup({
+        overlay_opacity = 50,
+        opacity_step = 1,
+      })
+    end
+  })
+
   -- UI to select things (files, grep results, open buffers, etc...)
   use({
     'nvim-telescope/telescope.nvim',
@@ -157,6 +172,18 @@ return require('packer').startup(function()
     },
   })
 
+  use({
+    'mfussenegger/nvim-dap', -- debugger
+    requires = {
+      'rcarriga/nvim-dap-ui',
+      'theHamsta/nvim-dap-virtual-text',
+      'williamboman/mason.nvim',
+      'mfussenegger/nvim-dap-python',
+      'leoluz/nvim-dap-go',
+    },
+    config = conf('dap'),
+  })
+
   use({ -- LSP
     'neovim/nvim-lspconfig',
     after = 'nvim-cmp',
@@ -168,7 +195,6 @@ return require('packer').startup(function()
       'williamboman/mason-lspconfig.nvim',
       'simrat39/rust-tools.nvim',
       'folke/lua-dev.nvim',
-      'mfussenegger/nvim-dap', -- debugger
       'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     },
     config = conf('lsp'),
@@ -279,11 +305,6 @@ return require('packer').startup(function()
       'nvim-neotest/neotest-vim-test',
     },
     config = conf('neotest'),
-  })
-
-  use({
-    'folke/which-key.nvim',
-    config = conf('keys'),
   })
 
   use({
