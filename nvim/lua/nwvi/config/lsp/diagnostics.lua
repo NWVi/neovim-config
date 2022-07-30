@@ -13,12 +13,18 @@ end
 -- LSP lines things
 lsp_lines.setup()
 
+local vtext = { prefix = '●' }
+
 vim.diagnostic.config({
-  virtual_text = true, -- removes duplication of diagnostic messages due to lsp_lines
+  virtual_text = vtext, -- removes duplication of diagnostic messages due to lsp_lines
   virtual_lines = false,
+  severity_sort = true,
 })
 
 vim.keymap.set('n', '<leader>le', function()
   local virtual_lines_enabled = not vim.diagnostic.config().virtual_lines
-  vim.diagnostic.config({ virtual_lines = virtual_lines_enabled, virtual_text = not virtual_lines_enabled })
+  vim.diagnostic.config({
+    virtual_lines = virtual_lines_enabled,
+    virtual_text = not virtual_lines_enabled and vtext or false,
+  })
 end, { desc = 'Toggle lsp_lines' })
