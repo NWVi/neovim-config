@@ -11,16 +11,6 @@ return require('packer').startup(function()
     config = conf('keys'),
   })
 
-  use({
-    'sunjon/shade.nvim',
-    config = function()
-      require("shade").setup({
-        overlay_opacity = 50,
-        opacity_step = 1,
-      })
-    end
-  })
-
   -- UI to select things (files, grep results, open buffers, etc...)
   use({
     'nvim-telescope/telescope.nvim',
@@ -177,6 +167,7 @@ return require('packer').startup(function()
     requires = {
       'rcarriga/nvim-dap-ui',
       'theHamsta/nvim-dap-virtual-text',
+      'nvim-telescope/telescope-dap.nvim',
       'williamboman/mason.nvim',
       'mfussenegger/nvim-dap-python',
       'leoluz/nvim-dap-go',
@@ -248,9 +239,8 @@ return require('packer').startup(function()
   use('mattn/emmet-vim')
 
   use({
-    'folke/zen-mode.nvim',
+    'Pocco81/true-zen.nvim',
     config = conf('zen'),
-    cmd = { 'ZenMode' },
   })
 
   use({

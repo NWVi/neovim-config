@@ -1,5 +1,4 @@
 return function()
-  local _, shade = pcall(require, 'shade')
   local dap, dapui = require('dap'), require('dapui')
 
   local dap_icons = {
@@ -23,25 +22,24 @@ return function()
     },
   }
 
+  -- config extensions
+  dapui.setup({})
+
   require('nvim-dap-virtual-text').setup({
     comment = true,
   })
 
-  -- config extensions
-  dapui.setup({})
+  require('telescope').load_extension('dap')
 
   -- Automatically open UI
   dap.listeners.after.event_initialized['dapui_config'] = function()
     dapui.open()
-    shade.toggle()
   end
   dap.listeners.before.event_terminated['dapui_config'] = function()
     dapui.close()
-    shade.toggle()
   end
   dap.listeners.before.event_exited['dapui_config'] = function()
     dapui.close()
-    shade.toggle()
   end
 
   -- Enable virtual text

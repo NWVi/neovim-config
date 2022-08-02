@@ -34,7 +34,12 @@ return function()
       a = { '<Cmd>ToggleTermToggleAll<CR>', 'All terminals' },
       s = { '<Cmd>2ToggleTerm<CR>', 'Terminal split' },
     },
-    z = { '<Cmd>ZenMode<CR>', 'Zen Mode' },
+    z = {
+      name = 'Zen',
+      f = { '<Cmd>TZFocus<CR>', 'Focus'},
+      m = { '<Cmd>TZMinimalist<CR>', 'Minimalist'},
+      a = { '<Cmd>TZAtaraxis<CR>', 'Ataraxis'},
+    },
     ['.'] = { '<CMD>lcd %:p:h<CR><CMD>pwd<CR>', 'CD current dir' },
   }
 
