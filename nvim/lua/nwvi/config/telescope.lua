@@ -36,17 +36,50 @@ return function()
   --     },
   --   },
   -- })
-
-  local map = require('nwvi.util.helpers').keymap.map
-  map('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
-  map('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
-  map('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
-  map('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
-  map('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]])
-  map('n', '<leader>ss', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]])
-  map('n', '<leader>sl', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
-  map('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]])
-  map('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
+  local wk = safe_require('which-key')
+  if wk then
+    local keymap = {
+      s = {
+        name = 'Search',
+        f = { [[<cmd>lua require('telescope.builtin').find_files()<CR>]], 'Files' },
+        h = { [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], 'Help tags' },
+        t = { [[<cmd>lua require('telescope.builtin').tags()<CR>]], 'Tags' },
+        o = {
+          [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]],
+          'Tags current buffer',
+        },
+        s = { [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], 'String under cursor' },
+        l = { [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], 'String' },
+        b = {
+          [[<cmd>lua require('telescope.builtin').live_grep({ grep_open_files = true })<CR>]],
+          'String in open buffers',
+        },
+        c = { [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], 'String in current buffer' },
+        ['?'] = { [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], 'Previously opened files' },
+        [' '] = { [[<cmd>lua require('telescope.builtin').buffers()<CR>]], 'Buffer' },
+      },
+    }
+    wk.register(keymap, {
+      mode = 'n',
+      prefix = '<leader>',
+      buffer = nil,
+      silent = true,
+      noremap = true,
+      nowait = false,
+    })
+  else
+    local map = require('nwvi.util.helpers').keymap.map
+    map('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
+    map('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
+    map('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
+    map('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
+    map('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]])
+    map('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]])
+    map('n', '<leader>ss', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]])
+    map('n', '<leader>sl', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
+    map('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').live_grep({ grep_open_files = true })<CR>]])
+    map('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
+  end
 
   telescope.setup({
     defaults = {
