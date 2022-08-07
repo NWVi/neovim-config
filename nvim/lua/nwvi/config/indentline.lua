@@ -16,6 +16,7 @@ return function()
       'starter',
       'norg',
       'mason',
+      'neo-tree',
       '',
     },
   })
