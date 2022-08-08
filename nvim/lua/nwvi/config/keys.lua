@@ -19,6 +19,7 @@ return function()
     g = {
       name = 'Git',
       s = { '<Cmd>Neogit<CR>', 'Status' },
+      f = { '<Cmd>!git fetch --all<CR>', 'Fetch' },
     },
     x = {
       name = 'Trouble',
