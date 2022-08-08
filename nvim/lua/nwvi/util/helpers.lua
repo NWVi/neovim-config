@@ -23,25 +23,4 @@ M.reload_config = function()
   vim.api.nvim_echo({ { 'Reloaded config' } }, true, {})
 end
 
--- Mapping helpers
-M.keymap = {}
-
-local options = { noremap = true, silent = true }
-
-function M.keymap.map(mode, keys, actions, opts)
-  vim.api.nvim_set_keymap(mode, keys, actions, opts or options)
-end
-
-function M.keymap.buf_map(mode, keys, actions, opts)
-  vim.api.nvim_buf_set_keymap(0, mode, keys, actions, opts or options)
-end
-
-function M.keymap.lua_map(mode, keys, cmd)
-  M.keymap.map(mode, keys, '<cmd>lua ' .. cmd .. '<CR>')
-end
-
-function M.keymap.lua_buf_map(mode, keys, cmd)
-  M.keymap.buf_map(mode, keys, '<cmd>lua ' .. cmd .. '<CR>')
-end
-
 return M
