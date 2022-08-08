@@ -2,6 +2,15 @@ local function conf(name)
   return require(string.format('nwvi.config.%s', name))
 end
 
+-- Bootstrap packer
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP =
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+  vim.cmd([[packadd packer.nvim]])
+end
+
 -- Packer packages --
 return require('packer').startup(function()
   use('wbthomason/packer.nvim') -- Package manager
@@ -9,6 +18,19 @@ return require('packer').startup(function()
   use({
     'folke/which-key.nvim',
     config = conf('keys'),
+  })
+
+  use({ -- Syntax tree
+    'nvim-treesitter/nvim-treesitter',
+    requires = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'RRethy/nvim-treesitter-textsubjects',
+      'p00f/nvim-ts-rainbow',
+      'windwp/nvim-ts-autotag',
+    },
+    run = ':TSUpdate',
+    config = conf('treesitter'),
   })
 
   -- UI to select things (files, grep results, open buffers, etc...)
@@ -100,34 +122,23 @@ return require('packer').startup(function()
     end,
   })
 
-  use {
-  "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
+  use({
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
     requires = {
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
+      'nvim-lua/plenary.nvim',
+      'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
     },
-    config = conf('neotree')
-  }
-
-  use({ -- Syntax tree
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    requires = {
-      'JoosepAlviste/nvim-ts-context-commentstring',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'RRethy/nvim-treesitter-textsubjects',
-      'p00f/nvim-ts-rainbow',
-      'windwp/nvim-ts-autotag',
-    },
-    config = conf('treesitter'),
+    config = conf('neotree'),
   })
 
   use({
     'echasnovski/mini.nvim',
     branch = 'stable',
-    after = 'nvim-treesitter',
+    requires = {
+      'nvim-treesitter/nvim-treesitter'
+    },
     config = conf('mini'),
   })
 
@@ -182,7 +193,6 @@ return require('packer').startup(function()
 
   use({ -- LSP
     'neovim/nvim-lspconfig',
-    after = 'nvim-cmp',
     requires = {
       'ray-x/lsp_signature.nvim',
       'jose-elias-alvarez/nvim-lsp-ts-utils',
@@ -316,7 +326,11 @@ return require('packer').startup(function()
 
   use({
     'phaazon/hop.nvim',
-    -- branch = 'v1', -- optional but strongly recommended
     config = conf('hop'),
   })
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
 end)
