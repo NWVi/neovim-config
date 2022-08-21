@@ -283,21 +283,6 @@ return require('packer').startup(function()
     ft = { 'markdown' },
   })
 
-  use({ -- Code outline window (similar to gutentag)
-    'stevearc/aerial.nvim',
-    cmd = { 'AerialToggle' },
-    config = conf('aerial'),
-  })
-
-  use({ -- smooth scrolling
-    'declancm/cinnamon.nvim',
-    config = function()
-      require('cinnamon').setup({
-        default_delay = 1,
-      })
-    end,
-  })
-
   use({
     'nvim-neotest/neotest',
     requires = {
