@@ -137,7 +137,7 @@ return require('packer').startup(function()
     'echasnovski/mini.nvim',
     branch = 'stable',
     requires = {
-      'nvim-treesitter/nvim-treesitter'
+      'nvim-treesitter/nvim-treesitter',
     },
     config = conf('mini'),
   })
