@@ -10,9 +10,10 @@ return function()
       require('neotest-python')({
         dap = { justMyCode = false },
       }),
+      require('neotest-rust'),
       require('neotest-go'),
       require('neotest-vim-test')({
-        ignore_file_types = { 'python', 'go' },
+        ignore_file_types = { 'python', 'go', 'rust' },
       }),
     },
     icons = {

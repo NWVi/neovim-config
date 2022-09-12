@@ -82,7 +82,7 @@ return require('packer').startup(function()
   })
 
   use({
-    'norcalli/nvim-colorizer.lua', -- Color highlighter
+    'NvChad/nvim-colorizer.lua', -- Color highlighter
     config = function()
       require('colorizer').setup({ '*' }, {
         RGB = true, -- #RGB hex codes
@@ -227,13 +227,6 @@ return require('packer').startup(function()
     config = conf('gitsigns'),
   })
 
-  use({ -- Git conflics
-    'akinsho/git-conflict.nvim',
-    config = function()
-      require('git-conflict').setup({})
-    end,
-  })
-
   use({ -- Git and diff
     'TimUntersberger/neogit',
     requires = {
@@ -291,6 +284,7 @@ return require('packer').startup(function()
       'antoinemadec/FixCursorHold.nvim',
       'nvim-neotest/neotest-go',
       'nvim-neotest/neotest-python',
+      'rouge8/neotest-rust',
       'nwvi/vim-test',
       'nvim-neotest/neotest-vim-test',
     },
