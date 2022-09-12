@@ -1,7 +1,8 @@
 --- Keybindings ---
+vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' ' -- Set SPACE as leader key
 vim.keymap.set('', '<leader>y', '"+y') -- Copy to system clipboard
-vim.keymap.set('', '<leader>p', '"+p') -- Paste from system clipboard
+vim.keymap.set('', '<leader>p', '"_dP', { desc = 'Paste without copy' })
 vim.keymap.set('n', '<leader>w', ':w<CR>') -- Save
 vim.keymap.set('n', '<leader>q', ':q<CR>') -- Quit current window
 vim.keymap.set('n', '<leader>qa', ':qa<CR>') -- Quit all windows
