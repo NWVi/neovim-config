@@ -27,6 +27,7 @@ return function()
       'vim',
       'vue',
       'yaml',
+      'rasi',
     },
     context_commentstring = {
       enable = true,
