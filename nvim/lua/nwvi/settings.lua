@@ -38,8 +38,6 @@ vim.opt.fillchars:append({
   verthoriz = '╋',
 })
 
-vim.opt.guifont = 'FiraCode NF:h12'
-
 -- menuone : popup even when there is only one match
 -- noinsert : don't insert text until a selection is made
 -- noselect : don't select, force user to select one from the menu
@@ -59,3 +57,10 @@ vim.api.nvim_create_autocmd(
   'FileType',
   { pattern = { 'help', 'startuptime', 'lspinfo' }, command = [[nnoremap <buffer><silent> q :close<CR>]] }
 )
+
+vim.opt.guifont = 'JetBrainsMono NF:h10'
+if vim.g.neovide then
+  vim.g.neovide_transparency=0.95
+  vim.g.neovide_cursor_animation_length=0.1
+  vim.g.neovide_cursor_trail_size=0.3
+end

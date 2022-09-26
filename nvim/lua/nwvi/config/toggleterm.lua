@@ -1,5 +1,6 @@
 return function()
   require('toggleterm').setup({
+    start_in_insrt = false,
     -- size can be a number or function which is passed the current terminal
     size = function(term)
       if term.direction == 'horizontal' then
@@ -13,17 +14,18 @@ return function()
   })
 
   function _G.set_terminal_keymaps()
-    local opts = { noremap = true }
-    vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<M-h>', [[<C-\><C-n><C-W>h]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<M-j>', [[<C-\><C-n><C-W>j]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<M-k>', [[<C-\><C-n><C-W>k]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<M-l>', [[<C-\><C-n><C-W>l]], opts)
+    local opts = { buffer = 0 }
+    vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+    vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+    vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+    vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+    vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+    vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
   end
 
   -- if you only want these mappings for toggle term use term://*toggleterm#* instead
   vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
   vim.keymap.set('n', '<leader>ta', [[:ToggleTermToggleALL<CR>]])
   vim.keymap.set('n', '<leader>ts', [[:2ToggleTerm<CR>]])
 end
