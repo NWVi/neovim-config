@@ -15,6 +15,7 @@ return function()
       'html',
       'javascript',
       'jsonc',
+      'json',
       'latex',
       'lua',
       'python',

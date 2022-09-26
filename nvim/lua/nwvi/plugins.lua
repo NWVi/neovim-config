@@ -253,6 +253,7 @@ return require('packer').startup(function()
 
   use({
     'nvim-neorg/neorg',
+    tag = "0.0.12",
     requires = {
       'nvim-neorg/neorg-telescope', -- Be sure to pull in the repo
       'nvim-lua/plenary.nvim',

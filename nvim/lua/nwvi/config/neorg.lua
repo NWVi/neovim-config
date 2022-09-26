@@ -34,7 +34,7 @@ return function()
       },
       ['core.presenter'] = {
         config = { -- Note that this table is optional and doesn't need to be provided
-          zen_mode = 'true-zen',
+          zen_mode = 'truezen',
         },
       },
       ['core.norg.concealer'] = {
