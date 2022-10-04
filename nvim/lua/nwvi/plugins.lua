@@ -286,6 +286,7 @@ return require('packer').startup(function()
       'nvim-neotest/neotest-go',
       'nvim-neotest/neotest-python',
       'rouge8/neotest-rust',
+      'Issafalcon/neotest-dotnet',
       'nwvi/vim-test',
       'nvim-neotest/neotest-vim-test',
     },

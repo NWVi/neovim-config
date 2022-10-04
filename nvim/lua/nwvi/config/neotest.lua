@@ -12,16 +12,17 @@ return function()
       }),
       require('neotest-rust'),
       require('neotest-go'),
+      require('neotest-dotnet'),
       require('neotest-vim-test')({
-        ignore_file_types = { 'python', 'go', 'rust' },
+        ignore_file_types = { 'python', 'go', 'rust', 'cs' },
       }),
     },
     icons = {
-      passed = "",
-      running = "",
-      failed = "",
-      unknown = "",
-    }
+      passed = '',
+      running = '',
+      failed = '',
+      unknown = '',
+    },
   })
 
   wk.register({

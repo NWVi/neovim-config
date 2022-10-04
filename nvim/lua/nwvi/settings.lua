@@ -41,26 +41,26 @@ vim.opt.fillchars:append({
 -- menuone : popup even when there is only one match
 -- noinsert : don't insert text until a selection is made
 -- noselect : don't select, force user to select one from the menu
-vim.opt.completeopt=[[menuone,noinsert,noselect]]
+vim.opt.completeopt = 'menuone,noinsert,noselect'
 
-vim.opt.signcolumn =[[yes]] -- keep sign column
+vim.opt.signcolumn = 'yes' -- keep sign column
 
 vim.cmd([[autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4]])
 vim.cmd([[autocmd FileType cs setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4]])
 vim.cmd([[autocmd FileType rs setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4]])
 
 vim.cmd([[autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s]])
-vim.cmd[[au BufRead,BufNewFile *.rasi setfiletype rasi]]
+vim.cmd([[au BufRead,BufNewFile *.rasi setfiletype rasi]])
 
 -- Close windows with 'q'
 vim.api.nvim_create_autocmd(
   'FileType',
-  { pattern = { 'help', 'startuptime', 'lspinfo' }, command = [[nnoremap <buffer><silent> q :close<CR>]] }
+  { pattern = { 'help', 'startuptime', 'lspinfo' }, command = 'nnoremap <buffer><silent> q :close<CR>' }
 )
 
-vim.opt.guifont = 'JetBrainsMono NF:h10'
+vim.opt.guifont = 'JetBrainsMono NF:h9'
 if vim.g.neovide then
-  vim.g.neovide_transparency=0.95
-  vim.g.neovide_cursor_animation_length=0.1
-  vim.g.neovide_cursor_trail_size=0.3
+  vim.g.neovide_transparency = 0.95
+  vim.g.neovide_cursor_animation_length = 0.1
+  vim.g.neovide_cursor_trail_size = 0.3
 end
