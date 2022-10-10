@@ -21,13 +21,13 @@ return require('packer').startup(function()
   })
 
   use({ -- Syntax tree
-    'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    'RRethy/nvim-treesitter-textsubjects',
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    'p00f/nvim-ts-rainbow',
+    'windwp/nvim-ts-autotag',
     requires = {
-      'JoosepAlviste/nvim-ts-context-commentstring',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'RRethy/nvim-treesitter-textsubjects',
-      'p00f/nvim-ts-rainbow',
-      'windwp/nvim-ts-autotag',
+      'nvim-treesitter/nvim-treesitter',
     },
     run = ':TSUpdate',
     config = conf('treesitter'),
@@ -253,12 +253,10 @@ return require('packer').startup(function()
 
   use({
     'nvim-neorg/neorg',
-    tag = "0.0.12",
     requires = {
       'nvim-neorg/neorg-telescope', -- Be sure to pull in the repo
       'nvim-lua/plenary.nvim',
     },
-    cmd = { 'NeorgStart' },
     config = conf('neorg'),
   })
 
