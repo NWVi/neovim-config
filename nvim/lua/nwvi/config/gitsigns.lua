@@ -19,7 +19,7 @@ return function()
     g = {
       m = { '<Cmd>Gitsigns change_base main<CR>', 'Change base main' },
       h = { '<Cmd>Gitsigns change_base<CR>', 'Change base original' },
-      n = { '<Cmd>Gitsigns change_base ', 'Change base ...' },
+      n = { ':Gitsigns change_base ', 'Change base ...' },
       b = { '<Cmd>Gitsigns blame_line<CR> ', 'Blame line' },
     },
   }, { prefix = '<leader>' })
