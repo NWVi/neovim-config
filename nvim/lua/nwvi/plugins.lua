@@ -117,6 +117,28 @@ return require('packer').startup(function()
         options = {
           theme = 'auto',
           globalstatus = true,
+          disabled_filetypes = {
+            winbar = {
+              'Trouble',
+              'toggleterm',
+            },
+          },
+        },
+        winbar = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = { 'filename' },
+          lualine_y = {},
+          lualine_z = {},
+        },
+        inactive_winbar = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = { 'filename' },
+          lualine_y = {},
+          lualine_z = {},
         },
       })
     end,
