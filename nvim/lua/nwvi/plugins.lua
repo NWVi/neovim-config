@@ -121,14 +121,15 @@ return require('packer').startup(function()
             winbar = {
               'Trouble',
               'toggleterm',
+              'neo-tree',
             },
           },
         },
         winbar = {
           lualine_a = {},
-          lualine_b = {},
+          lualine_b = { { 'aerial', sep = ' ❯ ' } },
           lualine_c = {},
-          lualine_x = { 'filename' },
+          lualine_x = { { 'filetype', icon_only = true }, { 'filename', path = 0 } },
           lualine_y = {},
           lualine_z = {},
         },
@@ -136,7 +137,7 @@ return require('packer').startup(function()
           lualine_a = {},
           lualine_b = {},
           lualine_c = {},
-          lualine_x = { 'filename' },
+          lualine_x = { { 'filetype', icon_only = true }, { 'filename', path = 0 } },
           lualine_y = {},
           lualine_z = {},
         },
@@ -328,6 +329,23 @@ return require('packer').startup(function()
   use({
     'phaazon/hop.nvim',
     config = conf('hop'),
+  })
+
+  use({
+    'nvim-treesitter/nvim-treesitter-context',
+    requires = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      require('treesitter-context').setup({})
+    end,
+  })
+
+  use({
+    'stevearc/aerial.nvim',
+    config = function()
+      require('aerial').setup()
+    end,
   })
 
   -- Automatically set up your configuration after cloning packer.nvim
