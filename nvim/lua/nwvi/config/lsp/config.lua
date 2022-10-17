@@ -113,7 +113,7 @@ for _, server in pairs(servers) do
   }
   local has_custom_opts, server_custom_opts = pcall(require, 'nwvi.config.lsp.settings.' .. server)
   if has_custom_opts then
-    opts = vim.tbl_deep_extend('force', server_custom_opts, opts)
+    opts = vim.tbl_deep_extend('force', opts, server_custom_opts)
   end
 
   if server == 'rust_analyzer' then
@@ -122,7 +122,7 @@ for _, server in pairs(servers) do
       print('Failed to load rust-tools')
     else
       local rust_opts = {
-        server = opts,
+        server = vim.tbl_deep_extend('force', opts, { standalone = true }),
       }
 
       rust_tools.setup(rust_opts)
