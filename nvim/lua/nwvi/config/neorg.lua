@@ -39,6 +39,7 @@ return function()
       },
       ['core.norg.concealer'] = {
         config = {
+          folds = false,
           preset = 'basic',
           icons = {
             todo = {
