@@ -54,9 +54,43 @@ return function()
   local mason_registry = require('mason-registry')
   local debugpy = mason_registry.get_package('debugpy') -- note that this will error if you provide a non-existent package name
   local netcoredbg = mason_registry.get_package('netcoredbg') -- note that this will error if you provide a non-existent package name
+  local codelldb = mason_registry.get_package('codelldb') -- note that this will error if you provide a non-existent package name
+
+  local codelldb_path = codelldb:get_install_path() .. '/extension/adapter/codelldb'
 
   require('dap-go').setup()
   require('dap-python').setup(debugpy:get_install_path() .. '/venv/bin/python')
+
+  -- codelldb for Rust, C and C++
+  dap.adapters.codelldb = {
+    type = 'server',
+    port = '13000',
+    executable = {
+      -- CHANGE THIS to your path!
+      command = codelldb_path,
+      args = { '--port', '13000' },
+
+      -- On windows you may have to uncomment this:
+      -- detached = false,
+    },
+  }
+
+  dap.configurations.rust = {
+    {
+      type = 'codelldb',
+      request = 'launch',
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      terminal = 'integrated',
+      sourceLanguages = { 'rust' },
+      stopOnEntry = true,
+    },
+  }
+
+  dap.configurations.c = dap.configurations.rust
+  dap.configurations.cpp = dap.configurations.rust
 
   -- dotnet wip
   dap.adapters.coreclr = {

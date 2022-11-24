@@ -121,8 +121,16 @@ for _, server in pairs(servers) do
     if not rt_ok then
       print('Failed to load rust-tools')
     else
+      local mason_registry = require('mason-registry')
+      local codelldb = mason_registry.get_package('codelldb') -- note that this will error if you provide a non-existent package name
+      local path = codelldb:get_install_path()
+      local codelldb_path = path .. '/extension/adapter/codelldb'
+      local liblldb_path = path .. '/extension/lldb/lib/liblldb.so'
       local rust_opts = {
         server = vim.tbl_deep_extend('force', opts, { standalone = true }),
+        dap = {
+          adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path),
+        },
       }
 
       rust_tools.setup(rust_opts)

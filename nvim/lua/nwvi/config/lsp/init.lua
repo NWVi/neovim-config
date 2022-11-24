@@ -7,4 +7,5 @@ return function()
   require('nwvi.config.lsp.signature')
   require('nwvi.config.lsp.handlers').setup()
   require('nwvi.config.lsp.null-ls')
+  require('fidget').setup()
 end
