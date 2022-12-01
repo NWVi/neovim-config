@@ -34,9 +34,9 @@ return require('packer').startup(function()
     'windwp/nvim-ts-autotag',
     requires = {
       'nvim-treesitter/nvim-treesitter',
+      config = require('nwvi.config.treesitter'),
+      run = ':TSUpdate',
     },
-    run = ':TSUpdate',
-    config = conf('treesitter'),
   })
 
   -- UI to select things (files, grep results, open buffers, etc...)
@@ -49,7 +49,7 @@ return require('packer').startup(function()
         run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
       }),
     },
-    config = conf('telescope'),
+    config = require('nwvi.config.telescope'),
   })
 
   use({ -- Dumb indentation detection
@@ -242,6 +242,7 @@ return require('packer').startup(function()
       'williamboman/mason-lspconfig.nvim',
       'simrat39/rust-tools.nvim',
       'folke/lua-dev.nvim',
+      'j-hui/fidget.nvim',
       'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     },
     after = { 'nvim-dap' },

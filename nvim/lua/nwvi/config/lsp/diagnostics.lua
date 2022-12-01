@@ -28,3 +28,4 @@ vim.keymap.set('n', '<leader>le', function()
     virtual_text = not virtual_lines_enabled and vtext or false,
   })
 end, { desc = 'Toggle lsp_lines' })
+vim.keymap.set('n', '<leader>ld', '<Cmd>lua vim.diagnostic.open_float()<CR>', { desc = 'Open diagnostic float' })
