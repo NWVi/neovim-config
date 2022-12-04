@@ -45,10 +45,6 @@ vim.opt.completeopt = 'menuone,noinsert,noselect'
 
 vim.opt.signcolumn = 'yes' -- keep sign column
 
-vim.cmd([[autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4]])
-vim.cmd([[autocmd FileType cs setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4]])
-vim.cmd([[autocmd FileType rs setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4]])
-
 vim.cmd([[autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s]])
 vim.cmd([[au BufRead,BufNewFile *.rasi setfiletype rasi]])
 
