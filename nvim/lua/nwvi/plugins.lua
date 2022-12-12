@@ -22,6 +22,11 @@ return require('packer').startup(function()
   use('wbthomason/packer.nvim') -- Package manager
 
   use({
+    'rebelot/kanagawa.nvim',
+    config = conf('theme'),
+  })
+
+  use({
     'folke/which-key.nvim',
     config = conf('keys'),
   })
@@ -113,11 +118,6 @@ return require('packer').startup(function()
         },
       })
     end,
-  })
-
-  use({
-    'rebelot/kanagawa.nvim',
-    config = conf('theme'),
   })
 
   use({ -- Bufferline
@@ -335,7 +335,7 @@ return require('packer').startup(function()
   })
 
   use({
-    'pwntester/octo.nvim',
+    'NWVi/octo.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
