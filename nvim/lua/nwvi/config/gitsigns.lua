@@ -21,6 +21,8 @@ return function()
       h = { '<Cmd>Gitsigns change_base<CR>', 'Change base original' },
       n = { ':Gitsigns change_base ', 'Change base ...' },
       b = { '<Cmd>Gitsigns blame_line<CR> ', 'Blame line' },
+      p = { '<Cmd>Gitsigns preview_hunk<CR> ', 'Preview hunk' },
+      r = { '<Cmd>Gitsigns reset_hunk<CR> ', 'Reset hunk' },
     },
   }, { prefix = '<leader>' })
 

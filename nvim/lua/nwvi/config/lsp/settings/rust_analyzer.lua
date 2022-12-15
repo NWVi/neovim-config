@@ -5,8 +5,8 @@ return {
         features = 'all',
       },
       checkOnSave = {
-        command = "clippy"
-      }
+        command = 'clippy',
+      },
     },
   },
 }

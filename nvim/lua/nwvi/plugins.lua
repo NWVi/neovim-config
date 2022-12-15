@@ -244,6 +244,7 @@ return require('packer').startup(function()
       'folke/lua-dev.nvim',
       'j-hui/fidget.nvim',
       'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+      'Hoffs/omnisharp-extended-lsp.nvim',
     },
     after = { 'nvim-dap' },
     config = conf('lsp'),
@@ -335,14 +336,16 @@ return require('packer').startup(function()
   })
 
   use({
-    'NWVi/octo.nvim',
+    '~/NWVi/octo.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
       'kyazdani42/nvim-web-devicons',
     },
     config = function()
-      require('octo').setup()
+      require('octo').setup({
+        use_local_fs = true,
+      })
     end,
   })
 
