@@ -31,6 +31,13 @@ return require('packer').startup(function()
     config = conf('keys'),
   })
 
+  use({
+    'mbbill/undotree',
+    config = function()
+      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+    end,
+  })
+
   use({ -- Syntax tree
     'nvim-treesitter/nvim-treesitter-textobjects',
     'RRethy/nvim-treesitter-textsubjects',
