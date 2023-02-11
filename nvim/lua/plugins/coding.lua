@@ -1,7 +1,4 @@
 return {
-  { 'folke/neoconf.nvim', cmd = 'Neoconf' },
-  'folke/neodev.nvim',
-
   -- snippets
   {
     "L3MON4D3/LuaSnip",
