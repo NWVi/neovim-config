@@ -3,7 +3,6 @@ local opt = vim.opt
 opt.completeopt = "menu,menuone,noselect,noinsert" 
 opt.cursorline = true -- Highlight current line
 opt.expandtab = true -- Use spaces instead of tabs
-opt.formatoptions = "jcrqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true
@@ -36,3 +35,12 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false
 opt.laststatus = 3
+
+opt.formatoptions = "jcroqlnt" -- default: tcqj
+-- j - remove comment leader where it makes sense when joining lines
+-- c - auto-wrap comments using 'textwidth' inserting comment leader automatically
+-- r - automatically insert the comment leader after <Enter> in insert mode
+-- q - allow formatitng comments with 'gq'
+-- l - long ines are not broken in insert mode.
+-- n - when formatting text recognize numbered lists.
+-- t - auto wrap text using 'textwidth'

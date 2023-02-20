@@ -2,7 +2,7 @@ return {
   -- lspconfig
   {
     'neovim/nvim-lspconfig',
-    event = 'BufReadPre',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       { 'folke/neoconf.nvim', cmd = 'Neoconf', config = true },
       { 'folke/neodev.nvim', opts = { experimental = { pathStrict = true } } },
@@ -28,7 +28,7 @@ return {
       autoformat = true,
       -- options for vim.lsp.buf.format
       -- `bufnr` and `filter` is handled by the LazyVim formatter,
-      -- but can be also overriden when specified
+      -- but can be also overridden when specified
       format = {
         formatting_options = nil,
         timeout_ms = nil,
@@ -36,12 +36,8 @@ return {
       -- LSP Server Settings
       ---@type lspconfig.options
       servers = {
-        rust_analyzer = {},
-        pyright = {},
-        omnisharp = {},
-        gopls = {},
         jsonls = {},
-        sumneko_lua = {
+        lua_ls = {
           -- mason = false, -- set to false if you don't want this server to be installed with mason
           settings = {
             Lua = {
@@ -79,18 +75,20 @@ return {
       end)
 
       -- diagnostics
-      -- for name, icon in pairs(require("lazyvim.config").icons.diagnostics) do
-      --   name = "DiagnosticSign" .. name
-      --   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-      -- end
+      for name, icon in pairs(require('config').icons.diagnostics) do
+        name = 'DiagnosticSign' .. name
+        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = '' })
+      end
       vim.diagnostic.config(opts.diagnostics)
 
       local servers = opts.servers
       local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
       local function setup(server)
-        local server_opts = servers[server] or {}
-        server_opts.capabilities = capabilities
+        local server_opts = vim.tbl_deep_extend('force', {
+          capabilities = vim.deepcopy(capabilities),
+        }, servers[server] or {})
+
         if opts.setup[server] then
           if opts.setup[server](server, server_opts) then
             return
@@ -127,7 +125,7 @@ return {
   -- formatters
   {
     'jose-elias-alvarez/null-ls.nvim',
-    event = 'BufReadPre',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = { 'mason.nvim' },
     opts = function()
       local nls = require('null-ls')

@@ -12,9 +12,5 @@ vim.keymap.set('n', '<Esc>', ':nohlsearch<Bar>:echo<CR>', { silent = true }) -- 
 
 require('config')
 
--- require('nwvi.settings')
--- require('nwvi.plugins')
--- require('nwvi.util')
-
 vim.cmd([[set clipboard=unnamedplus]])
 vim.cmd([[autocmd BufWritePre * lua require('nwvi.util.helpers').mkdir()]])
